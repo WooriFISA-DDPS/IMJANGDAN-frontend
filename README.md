@@ -1,6 +1,9 @@
 🤸How to start?
 =
 
+아래 명령들을 순서대로 실행해주세요.
+
+
 ### `npm install`
 
 Install the modules used by node.js through node package manager (npm).\
