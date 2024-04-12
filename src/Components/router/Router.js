@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../app/Home"
 import BbsList from "../bbs/BbsList"
 import BbsWrite from "../bbs/BbsWrite"
 import BbsDetail from "../bbs/BbsDetail"

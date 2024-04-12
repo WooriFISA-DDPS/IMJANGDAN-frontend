@@ -1,26 +1,62 @@
-import { Map } from "react-kakao-maps-sdk"
-import useKakaoLoader from "../../useKakaoLoader"
-import DefaultLayout from "../../layouts/DefaultLayout"
+import React, { useState, useEffect } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import useKakaoLoader from "../../useKakaoLoader";
 
-export default function BasicMap() {
-  useKakaoLoader()
+const BasicMap = () => {
+  useKakaoLoader();
+  
+  const [location, setLocation] = useState({ lat: 37.5566803113882, lng: 126.904501286522 });
+  const [address, setAddress] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const successHandler = (response) => {
+      const { latitude, longitude } = response.coords;
+      setLocation({ lat: latitude, lng: longitude });
+    };
+
+    const errorHandler = (error) => {
+      console.error(error);
+      setError("위치 정보를 가져오는 데 실패했습니다.");
+    };
+
+    navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+  }, []);
+
+  const getAddress = () => {
+    if (window.kakao) {
+      const { kakao } = window;
+      const geocoder = new kakao.maps.services.Geocoder();
+      const coord = new kakao.maps.LatLng(location.lat, location.lng);
+      const callback = function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          setAddress(result[0].address);
+        }
+      };
+      geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+    }
+  };
 
   return (
-    <div>
-    <Map // 지도를 표시할 Container
-      id="map"
-      center={{
-        // 지도의 중심좌표
-        lat: 33.450701,
-        lng: 126.570667,
-      }}
-      style={{
-        // 지도의 크기
-        width: "100%",
-        height: "calc(100vh - 60px)",
-      }}
-      level={3} // 지도의 확대 레벨
-    />
-    </div>
-  )
+    <>
+      <Map center={location} style={{ width: '800px', height: '600px' }} level={3}>
+        <MapMarker position={location} />
+        <button onClick={getAddress}>현재 좌표의 주소 얻기</button>
+      </Map>
+
+      {address && (
+        <div>
+          <p>현재 좌표의 주소는..</p>
+          <p>address_name: {address.address_name}</p>
+          <p>region_1depth_name: {address.region_1depth_name}</p>
+          <p>region_2depth_name: {address.region_2depth_name}</p>
+          <p>region_3depth_name: {address.region_3depth_name}</p>
+        </div>
+      )}
+
+      {error && <div>Error: {error}</div>}
+    </>
+  );
 }
+
+export default BasicMap;
