@@ -18,8 +18,7 @@ function Router() {
 
 	return (
 			<Routes>
-				<Route path="/asdf" element={<Home />}></Route>
-
+				<Route path="/" element={<KakaoMap />}></Route>
 				<Route path="/bbslist" element={<BbsList />}></Route>
 				<Route path="/bbswrite" element={<BbsWrite />}></Route>
 				<Route path="/bbsdetail/:boardId" element={<BbsDetail />}></Route>
@@ -27,7 +26,6 @@ function Router() {
 				<Route path="/bbsanswer/:parentSeq" element={<BbsAnswer />}></Route>
 
 				<Route path="/homememo" element={<HomeMemo />}></Route>
-				<Route path="/" element={<KakaoMap />}></Route>
 
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/join" element={<Join />}></Route>
