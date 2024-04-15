@@ -21,19 +21,11 @@ function Header() {
                 </Link>
               </li>
               {/* 메모 */}
-              <li className="nav-item dropdown">
-                <div
-                  className="nav-link"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                <Link to="/homememo">
+              <li className="nav-item">
+                <Link className="nav-link" to="/homememo">
                   메모
-                  </Link>
-                </div>
+                </Link>
+              </li>
 {/* 
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to="/bbslist">
@@ -42,46 +34,21 @@ function Header() {
                   <Link className="dropdown-item" to="/bbswrite">
                     메모추가
                   </Link> 
-                 </div> */}
-              </li>
+                 </div>
+              </li> */}
 
               {/* 뉴스 */}
               <li className="nav-item">
-                <div
-                  className="nav-link"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                <Link to="/news">
+                <Link className="nav-link" to="/news">
                   뉴스
-                  </Link>
-                </div>
+                </Link>
               </li>
 
               {/* 커뮤니티 */}
               <li className="nav-item">
-                <div
-                  className="nav-link"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <Link className="nav-link" to="/bbslist">
                   커뮤니티
-                </div>
-
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link className="dropdown-item" to="/bbslist">
-                    글목록
-                  </Link>
-                  <Link className="dropdown-item" to="/bbswrite">
-                    글추가
-                  </Link>
-                </div>
+                </Link>
               </li>
               
               {/* 공인중개사 */}
@@ -118,7 +85,8 @@ function Header() {
                   {/* 회원 정보 */}
                   <li className="nav-item">
                       <Link className="nav-link" to="/checkpwd">
-                        <i className="fas fa-sign-out-alt"></i> {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "}
+                        {/* <i className="fas fa-sign-out-alt"></i>*/}
+                        {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "} 
                       </Link>
                   </li>
 
