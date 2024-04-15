@@ -18,10 +18,7 @@ function Router() {
 
 	return (
 			<Routes>
-<<<<<<< HEAD
-=======
 				<Route path="/asdf" element={<Home />}></Route>
->>>>>>> c76bbaf (Fix: 헤더 및 지도 CSS 등)
 
 				<Route path="/bbslist" element={<BbsList />}></Route>
 				<Route path="/bbswrite" element={<BbsWrite />}></Route>
