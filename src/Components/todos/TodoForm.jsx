@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TODO_CATEGORY_ICON } from '../constants/icon.jsx';
+import { TODO_CATEGORY_ICON } from '../../constants/icon';
 
 const TodoForm = ({ onAdd, onClose }) => {
 

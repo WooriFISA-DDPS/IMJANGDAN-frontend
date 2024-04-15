@@ -18,6 +18,10 @@ function Router() {
 
 	return (
 			<Routes>
+<<<<<<< HEAD
+=======
+				<Route path="/asdf" element={<Home />}></Route>
+>>>>>>> c76bbaf (Fix: 헤더 및 지도 CSS 등)
 
 				<Route path="/bbslist" element={<BbsList />}></Route>
 				<Route path="/bbswrite" element={<BbsWrite />}></Route>
@@ -26,7 +30,7 @@ function Router() {
 				<Route path="/bbsanswer/:parentSeq" element={<BbsAnswer />}></Route>
 
 				<Route path="/homememo" element={<HomeMemo />}></Route>
-				<Route path="/kakaomap" element={<KakaoMap />}></Route>
+				<Route path="/" element={<KakaoMap />}></Route>
 
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/join" element={<Join />}></Route>
