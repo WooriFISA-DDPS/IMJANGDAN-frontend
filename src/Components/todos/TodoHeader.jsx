@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import TodoForm from '../TodoForm';
+// import TodoForm from '../TodoForm';
+import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
 // import Modal from '/Users/kangwonseo/Desktop/react/imjangdan-front-f/src/Components/ui/Modal'
 import Modal from '../ui/Modal';

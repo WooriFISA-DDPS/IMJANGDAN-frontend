@@ -8,7 +8,6 @@ import BbsAnswer from "../bbs/BbsAnswer"
 import Join from "../member/Join"
 import Login from "../member/Login"
 import Logout from "../member/Logout"
-import Update from "../member/MemberUpdate"
 import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
@@ -19,8 +18,7 @@ function Router() {
 
 	return (
 			<Routes>
-				<Route path="/" element={<Home />}></Route>
-
+				<Route path="/" element={<KakaoMap />}></Route>
 				<Route path="/bbslist" element={<BbsList />}></Route>
 				<Route path="/bbswrite" element={<BbsWrite />}></Route>
 				<Route path="/bbsdetail/:boardId" element={<BbsDetail />}></Route>
@@ -28,7 +26,6 @@ function Router() {
 				<Route path="/bbsanswer/:parentSeq" element={<BbsAnswer />}></Route>
 
 				<Route path="/homememo" element={<HomeMemo />}></Route>
-				<Route path="/kakaomap" element={<KakaoMap />}></Route>
 
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/join" element={<Join />}></Route>

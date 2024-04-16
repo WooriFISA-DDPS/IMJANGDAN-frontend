@@ -14,7 +14,7 @@ const TodoItem = ({ todo }) => {
             </div>
         </div>
         <div className="flex items-center gap-1">
-            <IconButton icon={'✏️'}/> */
+            <IconButton icon={'✏️'}/>
             <IconButton textColor='text-red-300' icon={'🗑'} />
         </div>
     </li>
