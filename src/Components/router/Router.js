@@ -12,6 +12,7 @@ import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
 import KakaoMap from '../app/KakaoMap';
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 
 function Router() {
@@ -19,18 +20,18 @@ function Router() {
 	return (
 			<Routes>
 				<Route path="/" element={<KakaoMap />}></Route>
-				<Route path="/bbslist" element={<BbsList />}></Route>
-				<Route path="/bbswrite" element={<BbsWrite />}></Route>
-				<Route path="/bbsdetail/:boardId" element={<BbsDetail />}></Route>
-				<Route path="/bbsupdate" element={<BbsUpdate />}></Route>
-				<Route path="/bbsanswer/:parentSeq" element={<BbsAnswer />}></Route>
+				<Route path="/bbslist" element={<DefaultLayout><BbsList /></DefaultLayout>}></Route>
+				<Route path="/bbswrite" element={<DefaultLayout><BbsWrite /></DefaultLayout>}></Route>
+				<Route path="/bbsdetail/:boardId" element={<DefaultLayout><BbsDetail /></DefaultLayout>}></Route>
+				<Route path="/bbsupdate" element={<DefaultLayout><BbsUpdate /></DefaultLayout>}></Route>
+				<Route path="/bbsanswer/:parentSeq" element={<DefaultLayout><BbsAnswer /></DefaultLayout>}></Route>
 
 				<Route path="/homememo" element={<HomeMemo />}></Route>
 
-				<Route path="/login" element={<Login />}></Route>
-				<Route path="/join" element={<Join />}></Route>
-				<Route path="/checkpwd" element={<CheckPwd />}></Route>
-				<Route path="/update" element={<MemberUpdate />}></Route>
+				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
+				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>
+				<Route path="/checkpwd" element={<DefaultLayout><CheckPwd /></DefaultLayout>}></Route>
+				<Route path="/update" element={<DefaultLayout><MemberUpdate /></DefaultLayout>}></Route>
 				<Route path="/logout" element={<Logout />}></Route>
 			</Routes>
 	);

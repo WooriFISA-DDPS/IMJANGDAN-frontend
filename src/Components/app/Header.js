@@ -1,6 +1,16 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const NavbarMenu = styled.a`
+  color: rgba(255,255,255,.75);
+  display: block;
+  padding: .5rem 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+`;
 
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -16,9 +26,15 @@ function Header() {
             <ul className="navbar-nav mr-auto">
               {/* 메인 화면 */}
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                {/* <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i> IMJANGDAN
-                </Link>
+                </Link> */}
+                <NavbarMenu className="nav-item"
+                  rel='noopener noreferrer' 
+                  href="http://localhost:8989/memomap">
+                  <i className="fas fa-home"></i> IMJANGDAN
+                </NavbarMenu>
+
               </li>
               {/* 메모 */}
               <li className="nav-item">

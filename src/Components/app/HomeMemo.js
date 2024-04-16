@@ -5,7 +5,7 @@ import axios from "axios";
 import TodoBody from '../todos/TodoBody'
 import TodoHeader from '../todos/TodoHeader'
 
-import DefaultLayout from '../../layouts/DefaultLayout';
+import FullLayout from '../../layouts/FullLayout';
 
 import '../../css/main.css';
 import '../../css/style.css';
@@ -27,6 +27,8 @@ function HomeMemo() {
           title: todo.title,
           summary: todo.content,
           category: todo.category,
+          latitude: todo.latitude,
+          longitude: todo.longitude,
         }));
   
   
@@ -61,7 +63,7 @@ function HomeMemo() {
         // <div className="container mt-5">
         //     <div className="jumbotron">
             
-      <DefaultLayout>
+      <FullLayout>
       <div>
         <header>
           <div className="flex justify-center">
@@ -75,7 +77,7 @@ function HomeMemo() {
           <TodoBody todos={todos}/>
         </section> 
       </div>
-      </DefaultLayout>
+      </FullLayout>
 
         //     </div>
         // </div>
