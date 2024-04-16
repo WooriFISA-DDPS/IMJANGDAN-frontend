@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from "../../useKakaoLoader";
 
-const BasicMap = () => {
+const KakaoMap = () => {
   useKakaoLoader();
   
   const [location, setLocation] = useState({ lat: 37.5566803113882, lng: 126.904501286522 });
@@ -59,4 +59,4 @@ const BasicMap = () => {
   );
 }
 
-export default BasicMap;
+export default KakaoMap;

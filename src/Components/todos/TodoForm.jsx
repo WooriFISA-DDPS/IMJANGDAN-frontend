@@ -7,7 +7,7 @@ const TodoForm = ({ onAdd, onClose }) => {
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [category, setCategory] = useState('TODO');
-    console.log(title, summary);
+    console.log(title, summary, kakao);
 
     // Todo 등록 처리를 수행할 핸들러 함수
     const addTodoHandler = () => {
@@ -28,7 +28,7 @@ const TodoForm = ({ onAdd, onClose }) => {
 
   return (
     <>
-            <h3 className="text-3xl text-red-200">New Todo</h3>
+            <h3 className="text-3xl text-red-200">새 메모 작성</h3>
             <form className='my-2'>
                 <div>
                     <label className='block mb-2 text-xl text-white' htmlFor='title'>Title</label>
@@ -49,6 +49,11 @@ const TodoForm = ({ onAdd, onClose }) => {
                         <option value='SoSo'>{TODO_CATEGORY_ICON.SoSo} SoSo</option>
                         <option value='DONE'>{TODO_CATEGORY_ICON.DONE} Bad</option>
                     </select>
+                </div>
+                <div>
+                    <label className='block mb-2 text-xl text-white' htmlFor='summary'>Location</label>
+                    <div className='w-full p-2 border-[1px] border-gray-300 bg-gray-200 text-gray-900 rounded' 
+                            />
                 </div>
 
                 <div className='flex justify-end gap-4'>

@@ -13,6 +13,7 @@ import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
+const { kakao } = window;
 
 const dummyTodos = []
 
