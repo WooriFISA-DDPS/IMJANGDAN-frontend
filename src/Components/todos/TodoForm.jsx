@@ -19,6 +19,12 @@ const TodoForm = ({ onAdd, onClose }) => {
         onClose(); // add동작 수행 후 모달창 닫기
 
     }
+    // Todo 등록 처리를 수행할 핸들러 함수
+    const cancelHandler = () => {
+        // 현재 창 닫기 
+        onClose(); // Modal 창 그냥 닫기
+
+    }
 
   return (
     <>
@@ -46,7 +52,7 @@ const TodoForm = ({ onAdd, onClose }) => {
                 </div>
 
                 <div className='flex justify-end gap-4'>
-                    <button className='text-xl text-white' type='button'>Cancel</button>
+                    <button className='text-xl text-white' type='button' onClick={cancelHandler} >Cancel</button>
                     <button className='px-6 py-3 text-xl text-red-200' type='button' onClick={addTodoHandler} >Add</button>
                 </div>
             </form>
