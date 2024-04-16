@@ -35,12 +35,9 @@ function HomeMemo() {
           title: todo.title,
           summary: todo.content,
           category: todo.category,
-<<<<<<< HEAD
           latitude: todo.latitude,
           longitude: todo.longitude,
-=======
           writerEmail: todo.writerName
->>>>>>> afd5eb8f34751633e4899e9ba498d3c37668d92a
         }));
 
 
@@ -70,13 +67,6 @@ function HomeMemo() {
 
     console.log("newTodo ", reqTodo)
 
-<<<<<<< HEAD
-    return (
-        // <div className="container mt-5">
-        //     <div className="jumbotron">
-            
-      <FullLayout>
-=======
     await axios
       .post("http://localhost:8989/memo/write", reqTodo, { headers: headers })
       .then((resp) => {
@@ -117,8 +107,7 @@ function HomeMemo() {
     // <div className="container mt-5">
     //     <div className="jumbotron">
 
-    <DefaultLayout>
->>>>>>> afd5eb8f34751633e4899e9ba498d3c37668d92a
+    <FullLayout>
       <div>
         <header>
           <div className="flex justify-center">
@@ -132,11 +121,7 @@ function HomeMemo() {
           <TodoBody todos={todos} />
         </section>
       </div>
-<<<<<<< HEAD
       </FullLayout>
-=======
-    </DefaultLayout>
->>>>>>> afd5eb8f34751633e4899e9ba498d3c37668d92a
 
     //     </div>
     // </div>
