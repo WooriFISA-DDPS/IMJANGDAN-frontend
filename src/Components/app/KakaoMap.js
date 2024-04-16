@@ -43,21 +43,14 @@ const BasicMap = () => {
         <MapMarker position={location} />
         <button onClick={getAddress}>현재 좌표의 주소 얻기</button>
       </Map>
-      
-      <div>
-        <h2>현재 좌표:</h2>
-        <p>Latitude (위도): {location.lat}</p>
-        <p>Longitude (경도): {location.lng}</p>
-      </div>
 
       {address && (
         <div>
-          <h2>현재 좌표의 주소 정보:</h2>
-          <ul>
-            {Object.entries(address).map(([key, value]) => (
-              <li key={key}>{key}: {value}</li>
-            ))}
-          </ul>
+          <p>현재 좌표의 주소는..</p>
+          <p>address_name: {address.address_name}</p>
+          <p>region_1depth_name: {address.region_1depth_name}</p>
+          <p>region_2depth_name: {address.region_2depth_name}</p>
+          <p>region_3depth_name: {address.region_3depth_name}</p>
         </div>
       )}
 
