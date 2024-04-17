@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import KakaoMapTest from '../app/KakaoMapTest'
 import BbsList from "../bbs/BbsList"
 import BbsWrite from "../bbs/BbsWrite"
 import BbsDetail from "../bbs/BbsDetail"
@@ -11,7 +12,7 @@ import Logout from "../member/Logout"
 import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
-import KakaoMap from '../app/KakaoMap';
+import KakaoMap from '../map/KakaoMap';
 import DefaultLayout from "../../layouts/DefaultLayout";
 
 
@@ -19,7 +20,7 @@ function Router() {
 
 	return (
 			<Routes>
-				<Route path="/" element={<KakaoMap />}></Route>
+				<Route path="/" element={<KakaoMapTest />}></Route>
 				<Route path="/bbslist" element={<DefaultLayout><BbsList /></DefaultLayout>}></Route>
 				<Route path="/bbswrite" element={<DefaultLayout><BbsWrite /></DefaultLayout>}></Route>
 				<Route path="/bbsdetail/:boardId" element={<DefaultLayout><BbsDetail /></DefaultLayout>}></Route>

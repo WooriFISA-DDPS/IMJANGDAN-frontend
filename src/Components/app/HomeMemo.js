@@ -13,7 +13,7 @@ import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
-const { kakao } = window;
+// const { kakao } = window;
 
 const dummyTodos = []
 
@@ -22,7 +22,6 @@ function HomeMemo() {
   const { auth, setAuth } = useContext(AuthContext);
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const navigate = useNavigate();
-
   
   useEffect(() => {
     const fetchTodos = async () => {
@@ -30,6 +29,7 @@ function HomeMemo() {
         const response = await axios.get("http://localhost:8989/memo/list");
         const fetchedTodos = response.data.content;
         console.log("Fetched Todos:", fetchedTodos); // Log fetched data to console
+        // console.log("window.kakao: ", kakao); // window.kakao 확인하기
 
         const filteredTodos = fetchedTodos.map((todo) => ({
           memoId: todo.memoId,
@@ -41,7 +41,6 @@ function HomeMemo() {
           writerEmail: todo.writerName
         }));
 
-
         setTodos([...dummyTodos, ...filteredTodos]);
       } catch (error) {
         console.error(error); // Handle errors appropriately
@@ -52,18 +51,17 @@ function HomeMemo() {
   }, []);
 
   // Todo 추가 핸들러
-  const addTodoHandler = async ({ title, summary, category }) => {
+  const addTodoHandler = async ({ title, summary, category, coord }) => {
     console.log("add todo handler")
-    console.log(title, summary, category);
-
+    console.log(title, summary, category, coord);
 
     const reqTodo = {
       memoId: window.crypto.randomUUID(), // int로 바꿔야..?
       title,
       content: summary,
       category,
-      latitude: "1234",
-      longitude: "2345"
+      latitude: coord.lat,
+      longitude: coord.lng
     };
 
     console.log("newTodo ", reqTodo)
@@ -77,7 +75,7 @@ function HomeMemo() {
         console.log("boardId:", memoId);
         //fileUpload(memoId);
 
-        alert("새로운 게시글을 성공적으로 등록했습니다 :D");
+        alert("새로운 메모를 성공적으로 등록했습니다 :D");
        // navigate(`/bbsdetail/${resp.data.memoId}`); // 새롭게 등록한 글 상세로 이동
       })
       .catch((err) => {
