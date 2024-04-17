@@ -123,9 +123,10 @@ function AdminList() {
           <tr>
             <th className="col-1">고유번호</th>
             <th className="col-3">아이디</th>
-            <th className="col-3">사용자 이름</th>
+            <th className="col-2">사용자 이름</th>
             <th className="col-2">사용자 역할</th>
-            <th className="col-1">관심지역코드</th>
+            <th className="col-2">관심지역코드</th>
+            <th className="col-4">회원탈퇴처리</th>
           </tr>
         </thead>
 
@@ -165,7 +166,12 @@ function TableRow(props) {
       </td>
       <td>{member.username}</td>
       <td>{member.roles}</td>
-      <td style={{ textAlign: 'center' }}>{member.regionId}</td>
+      <td >{member.regionId}</td>
+      <td>
+        <button className="btn btn-outline-danger" onClick={() => {alert('탈퇴 처리합니다!')}}>
+          <i className="fas fa-check"></i> 탈퇴 처리
+        </button>
+      </td>
     </tr>
   );
 }

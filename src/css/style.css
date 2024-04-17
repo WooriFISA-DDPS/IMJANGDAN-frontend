@@ -10,6 +10,20 @@ textarea {
 	padding: 20px;
 }
 
+input {
+	display: auto; 
+	padding: 0.625rem; 
+	border-radius: 0.5rem; 
+	border-width: 1px; 
+	border-color: #D1D5DB; 
+	width: auto; 
+	font-size: 0.875rem;
+	line-height: 1.25rem; 
+	color: #111827; 
+	background-color: #F9FAFB; 
+
+}
+
 .profile-img {
 	border-radius: 50%;
 	width: 50px;
