@@ -13,6 +13,7 @@ import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
 import KakaoMap from '../map/KakaoMap';
+import AdminList from "../admin/AdminList"
 import DefaultLayout from "../../layouts/DefaultLayout";
 
 
@@ -28,11 +29,13 @@ function Router() {
 				<Route path="/bbsanswer/:parentSeq" element={<DefaultLayout><BbsAnswer /></DefaultLayout>}></Route>
 
 				<Route path="/homememo" element={<HomeMemo />}></Route>
+				<Route path="/homememo/:latlng" element={<HomeMemo />}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
 				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>
 				<Route path="/checkpwd" element={<DefaultLayout><CheckPwd /></DefaultLayout>}></Route>
 				<Route path="/update" element={<DefaultLayout><MemberUpdate /></DefaultLayout>}></Route>
+				<Route path="/adminfeat" element={<DefaultLayout><AdminList /></DefaultLayout>}></Route>
 				<Route path="/logout" element={<Logout />}></Route>
 			</Routes>
 	);

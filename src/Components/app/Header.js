@@ -42,16 +42,6 @@ function Header() {
                   메모
                 </Link>
               </li>
-{/* 
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link className="dropdown-item" to="/bbslist">
-                    메모목록
-                  </Link>
-                  <Link className="dropdown-item" to="/bbswrite">
-                    메모추가
-                  </Link> 
-                 </div>
-              </li> */}
 
               {/* 뉴스 */}
               <li className="nav-item">
@@ -121,7 +111,31 @@ function Header() {
                       내 컬렉션
                     </div>
                   </li>
-                  
+                  {/* 관리자 메뉴 
+                  <li className="nav-item dropdown">
+                    <div
+                      className="nav-link dropdown-toggle"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      관리자
+                    </div>
+
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link className="dropdown-item" to="/bbslist">
+                        회원 관리
+                      </Link>
+                      <Link className="dropdown-item" to="/bbswrite">
+                        로그
+                      </Link>
+                      <Link className="dropdown-item" to="/bbswrite">
+                        모니터링
+                      </Link>
+                    </div>
+                  </li>*/}
 
                   {/* 로그아웃 */}
                   <li className="nav-item">
