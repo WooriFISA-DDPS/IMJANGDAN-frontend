@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
 
-const TodoBody = ({ todos }) => {
-  console.log(todos);
+const TodoBody = ({ todos, onFind }) => {
+
+
+  const findItemById = (id) => {
+    onFind(id);
+  }
+
+
+
+  //console.log(todos);
   return (
-    <ul className='px-0 my-8'>
-        {todos.map((todo,index) => <TodoItem key={index} todo={todo}/>) }
+    <ul className='px-0 '>
+        {todos.map((todo,index) => <TodoItem key={index} todo={todo} onFind={findItemById} />) }
     </ul>
   )
 }

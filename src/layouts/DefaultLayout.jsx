@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 const BodyDiv=styled.div`
   height:calc(-56px + 100vh);
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 `;
 
 // 합성(Composition)
@@ -13,7 +15,7 @@ const DefaultLayout = ({ children }) => {
   return (
     <BodyDiv className='w-full overflow-y-scroll'>
         {/* [20rem]: Tailwind에서 제공하는 정해진 규격의 값이 아닌 직접 상세한 값을 적용하고 싶을 때 */}
-        <div className='max-w-5xl mx-auto py-4 min-w-[20rem]'>
+        <div className='max-w-5xl mx-auto min-w-[20rem]'>
             { children }
         </div>
     </BodyDiv>

@@ -4,8 +4,10 @@ import axios from "axios";
 
 import TodoBody from '../todos/TodoBody'
 import TodoHeader from '../todos/TodoHeader'
+import TodoDetail from "../todos/TodoDetail";
+import Modal from '../ui/Modal.jsx'
 
-import FullLayout from '../../layouts/FullLayout';
+import DefaultLayout from "../../layouts/DefaultLayout.jsx";
 
 import '../../css/main.css';
 import '../../css/style.css';
@@ -22,6 +24,28 @@ function HomeMemo() {
   const { auth, setAuth } = useContext(AuthContext);
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const navigate = useNavigate();
+  const [detail, setDetail] = useState(null);
+
+  const findItemById = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:8989/memo/${id}`);
+      // console.log("HomeMemo Fetched Memo Details:", fetchedDetail);
+      setdetailFunction(response.data)
+    } catch (error) {
+      console.error("Error fetching memo details:", error);
+    }
+  }
+
+  const getdetailFunction = () => {
+    console.log(detail);
+    return detail
+  }
+  const setdetailFunction = (detail) => {
+    // console.log("Set the detail : ", detail)
+    setDetail(detail)
+  }
+
+
   
   useEffect(() => {
     const fetchTodos = async () => {
@@ -51,17 +75,17 @@ function HomeMemo() {
   }, []);
 
   // Todo 추가 핸들러
-  const addTodoHandler = async ({ title, summary, category, coord }) => {
+  const addTodoHandler = async ({ title, summary, category, detail }) => {
     console.log("add todo handler")
-    console.log(title, summary, category, coord);
+    console.log(title, summary, category, detail);
 
     const reqTodo = {
       memoId: window.crypto.randomUUID(), // int로 바꿔야..?
       title,
       content: summary,
       category,
-      latitude: coord.lat,
-      longitude: coord.lng
+      latitude: detail.lat,
+      longitude: detail.lng
     };
 
     console.log("newTodo ", reqTodo)
@@ -79,7 +103,7 @@ function HomeMemo() {
        // navigate(`/bbsdetail/${resp.data.memoId}`); // 새롭게 등록한 글 상세로 이동
       })
       .catch((err) => {
-        console.log("[MEMOWrite.js] createBbs() error :<");
+        console.log("[MEMOWrite.js] createMemo() error :<");
         console.log(err);
       });
   
@@ -88,6 +112,9 @@ function HomeMemo() {
     setTodos(updatedTodos);
   
   };
+
+  
+
 
   useEffect(() => {
     // 컴포넌트가 렌더링될 때마다 localStorage의 토큰 값으로 headers를 업데이트
@@ -102,25 +129,26 @@ function HomeMemo() {
     }
   }, []);
 
-  return (
-    // <div className="container mt-5">
-    //     <div className="jumbotron">
 
-    <FullLayout>
-      <div>
-        <header>
-          <div className="flex justify-center">
-            <a href="/">
-              <h1 className='py-8 text-red-200 max-w-max text-7xl'>Memo</h1>
-            </a>
-          </div>
-        </header>
-        <section>
-          <TodoHeader onAdd={addTodoHandler} />
-          <TodoBody todos={todos} />
-        </section>
+  return (
+    <div className="flex my-4">
+      <DefaultLayout>
+        
+        <div className="container">
+          <section className="static">
+            <TodoHeader onAdd={addTodoHandler} />
+            <TodoBody todos={todos}  onFind={findItemById} />
+          </section>
+        </div>
+      </DefaultLayout>
+
+      <div className="container h-full ml-2 justify-between bg-gray-100 border-solid border-1 border-gray overflow-auto">
+        <TodoDetail detail={detail}/>
       </div>
-      </FullLayout>
+
+    </div>
+      
+    
 
     //     </div>
     // </div>

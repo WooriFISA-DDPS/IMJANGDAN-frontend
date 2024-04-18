@@ -14,6 +14,7 @@ import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
 import KakaoMap from '../map/KakaoMap';
 import DefaultLayout from "../../layouts/DefaultLayout";
+// import {TodoDetailContext, TodoDetailProvider} from "../../contexts/TodoDetailContext";
 
 
 function Router() {
@@ -27,7 +28,7 @@ function Router() {
 				<Route path="/bbsupdate" element={<DefaultLayout><BbsUpdate /></DefaultLayout>}></Route>
 				<Route path="/bbsanswer/:parentSeq" element={<DefaultLayout><BbsAnswer /></DefaultLayout>}></Route>
 
-				<Route path="/homememo" element={<HomeMemo />}></Route>
+				<Route path="/homememo" element={<DefaultLayout><HomeMemo /></DefaultLayout>}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
 				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>

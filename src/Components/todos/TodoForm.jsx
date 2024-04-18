@@ -31,7 +31,8 @@ const TodoForm = ({ onAdd, onClose }) => {
 
         // App.jsx에서 내려받은 onAdd 호출
         // alert(coord)
-        window.confirm('TodoForm의 setCoordFunction' + coord.lat +"," + coord.lng + '입니다.') 
+        window.confirm('여기 TodoForm의 setCoordFunction' + coord.lat +"," + coord.lng + '입니다.')
+            console.log(coord) 
             ? onAdd({ title, summary, category, coord }) 
             : console.log("사용자가 작업을 취소하였음");
         // onAdd({ title, summary, category, coord });
@@ -47,21 +48,20 @@ const TodoForm = ({ onAdd, onClose }) => {
 
   return (
     <>
-        <h3 className="text-3xl text-red-200">새 메모 작성</h3>
-        <form className='my-2'>
+        <form className='my-0'>
             <div>
-                <label className='block mb-2 text-xl text-white' htmlFor='title'>Title</label>
-                <input className='w-full p-2 border-[1px] border-gray-300 bg-gray-200 text-gray-900 rounded' 
+                <label className='block mt-3 mb-2 text-xl text-gray-800' htmlFor='title'>메모 타이틀</label>
+                <input className='w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded' 
                         type='text' id='title' value={title} onChange={event => setTitle(event.target.value)}  />
             </div>
             <div>
-                <label className='block mb-2 text-xl text-white' htmlFor='summary'>Summary</label>
-                <textarea className='w-full p-2 border-[1px] border-gray-300 bg-gray-200 text-gray-900 rounded' 
+                <label className='block mt-2 mb-2 text-xl text-gray-800' htmlFor='summary'>메모 내용</label>
+                <textarea className='w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded' 
                             id='summary' rows='5' value={summary} onChange={event => setSummary(event.target.value)}/>
             </div>
             <div>
-                <label className='block mb-2 text-xl text-white' htmlFor='category'>Category</label>
-                <select className='w-full p-2 border-[1px] border-gray-300 bg-gray-200 text-gray-900 rounded' 
+                <label className='block mt-2 mb-2 text-xl text-gray-800' htmlFor='category'>카테고리</label>
+                <select className='w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded' 
                         id='category' value={category} onChange={event => setCategory(event.target.value)}>
 
                     <option value='TODO'>{TODO_CATEGORY_ICON.TODO} Good</option>
@@ -70,16 +70,16 @@ const TodoForm = ({ onAdd, onClose }) => {
                 </select>
             </div>
             <div>
-                <label className='block mb-2 text-xl text-white' htmlFor='summary'>Location</label>
-                <div className='w-full p-2 border-[1px] border-gray-300 bg-gray-200 text-gray-900 rounded' >
+                <label className='block mt-3 mb-2 text-xl text-gray-800' htmlFor='summary'>위치</label>
+                <div className='w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded' >
                     <KakaoMap getCoordFunction={getCoordFunction} setCoordFunction={setCoordFunction} />
                 </div>
                     
             </div>
 
             <div className='flex justify-end gap-4'>
-                <button className='text-xl text-white' type='button' onClick={cancelHandler} >Cancel</button>
-                <button className='px-6 py-3 text-xl text-red-200' type='button' onClick={addTodoHandler} >Add</button>
+                <button className='text-xl text-gray-800' type='button' onClick={cancelHandler} >취소</button>
+                <button className='px-6 py-3 text-xl text-gray-800' type='button' onClick={addTodoHandler} >추가</button>
             </div>
         </form>
     </>
