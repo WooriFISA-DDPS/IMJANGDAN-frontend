@@ -65,14 +65,14 @@ function Login() {
 					<tr>
 						<th className="col-3">아이디</th>
 						<td>
-							<input type="text" value={id} onChange={changeId} />
+							<input type="text" value={id} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  onChange={changeId} />
 						</td>
 					</tr>
 
 					<tr>
 						<th>비밀번호</th>
 						<td>
-							<input type="password" value={pwd} onChange={changePwd} />
+							<input type="password" value={pwd} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  onChange={changePwd} />
 						</td>
 					</tr>
 				</tbody>
