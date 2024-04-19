@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from '../../useKakaoLoader';
 
@@ -16,6 +16,19 @@ const MemoMap = ({ lat, lng }) => {
 		lng : lng
 	}
 
+	// const { kakao } = window;
+	// const geocoder = new kakao.maps.services.Geocoder();
+	// const [address, setAddress] = useState(); 
+
+	// if (lat && lng) {
+	// 	geocoder.coord2Address(lng, lat, (result, status) => {
+	// 	  if (status === 'OK') {
+	// 		setAddress(result[0].address.address_name);
+	// 	  } else {
+	// 		console.error('Geocoding failed:', status);
+	// 	  }
+	// 	});
+	// }
 	useKakaoLoader();
 
 	return (
@@ -28,11 +41,11 @@ const MemoMap = ({ lat, lng }) => {
 				<MapMarker position={coord} />
 			</Map>
 			{coord ? (
-				`클릭한 위치의 위도는 ${coord.lat}이고, 경도는 ${coord.lng}입니다.`
+				<h2 className='mt-2'>address</h2>
 			) : (
 				<p>위치를 지정해주세요.</p> // coord 없으면 나올 말
 			)}
 		</>
 	);
-};
+}
 export default MemoMap;

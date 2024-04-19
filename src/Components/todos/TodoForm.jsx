@@ -7,15 +7,8 @@ const TodoForm = ({ onAdd, onClose }) => {
     // 각 입력폼 별 값들을 관리할 상태가 필요
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
-    const [category, setCategory] = useState('TODO');
-    const [coord, setCoord] = useState(null);
-    // console.log(title, summary);
-
-    // useEffect(() => {
-    //     if (coord) {
-    //         alert('TodoForm의 setCoordFunction' + coord.lat +"," + coord.lng + '입니다.');
-    //     }
-    // }, [coord]); // Effect runs only when coord changes
+    const [category, setCategory] = useState('Good'); //기본으로 들어가게 함
+    const [coord, setCoord] = useState(null); // 기본으로 둘 좌표 설정 ->현재위치를 자동으로 받으면 좋을 거같긴함
 
     const getCoordFunction = () => {
         return coord;
@@ -32,7 +25,6 @@ const TodoForm = ({ onAdd, onClose }) => {
         // App.jsx에서 내려받은 onAdd 호출
         // alert(coord)
         window.confirm('여기 TodoForm의 setCoordFunction' + coord.lat +"," + coord.lng + '입니다.')
-            console.log(coord) 
             ? onAdd({ title, summary, category, coord }) 
             : console.log("사용자가 작업을 취소하였음");
         // onAdd({ title, summary, category, coord });
@@ -64,9 +56,9 @@ const TodoForm = ({ onAdd, onClose }) => {
                 <select className='w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded' 
                         id='category' value={category} onChange={event => setCategory(event.target.value)}>
 
-                    <option value='TODO'>{TODO_CATEGORY_ICON.TODO} Good</option>
+                    <option value='Good'>{TODO_CATEGORY_ICON.Good} Good</option>
                     <option value='SoSo'>{TODO_CATEGORY_ICON.SoSo} SoSo</option>
-                    <option value='DONE'>{TODO_CATEGORY_ICON.DONE} Bad</option>
+                    <option value='Bad'>{TODO_CATEGORY_ICON.Bad} Bad</option>
                 </select>
             </div>
             <div>

@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 // import TodoForm from '../TodoForm';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
-// import Modal from '/Users/kangwonseo/Desktop/react/imjangdan-front-f/src/Components/ui/Modal'
 import Modal from '../ui/Modal';
+import TodoShow from './TodoShow';
 
 const TodoHeader = ({ onAdd }) => {
 
@@ -21,11 +21,17 @@ const TodoHeader = ({ onAdd }) => {
           onClick={openModal}
         >메모 추가
         </button>
-          {isOpen && createPortal(
-            <Modal>
-              <TodoForm onAdd={onAdd} onClose={closeModal} />
-            </Modal>, document.body)}
+
+
+        {isOpen && createPortal(
+          <Modal>
+            <TodoForm onAdd={onAdd} onClose={closeModal} />
+          </Modal>, document.body)}
+        
+        <div>
+        <TodoShow />
         <TodoFilter />
+        </div>
       </div>
     </>
 

@@ -25,6 +25,9 @@ function HomeMemo() {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const navigate = useNavigate();
   const [detail, setDetail] = useState(null);
+  const [latestMemo, setLatestMemo] = useState(null); // Initialize with null
+  let count;
+
 
   const findItemById = async (id) => {
     try {
@@ -46,14 +49,13 @@ function HomeMemo() {
   }
 
 
+
   
   useEffect(() => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get("http://localhost:8989/memo/list");
         const fetchedTodos = response.data.content;
-        console.log("Fetched Todos:", fetchedTodos); // Log fetched data to console
-        // console.log("window.kakao: ", kakao); // window.kakao 확인하기
 
         const filteredTodos = fetchedTodos.map((todo) => ({
           memoId: todo.memoId,
@@ -65,6 +67,11 @@ function HomeMemo() {
           writerEmail: todo.writerName
         }));
 
+        if (fetchedTodos.length > 0) { // Check if there are any todos
+          setLatestMemo(filteredTodos[0]); // Update latestMemo with the first item
+        }
+        console.log(latestMemo)
+
         setTodos([...dummyTodos, ...filteredTodos]);
       } catch (error) {
         console.error(error); // Handle errors appropriately
@@ -75,17 +82,17 @@ function HomeMemo() {
   }, []);
 
   // Todo 추가 핸들러
-  const addTodoHandler = async ({ title, summary, category, detail }) => {
+  const addTodoHandler = async ({ title, summary, category, coord }) => {
     console.log("add todo handler")
-    console.log(title, summary, category, detail);
+    console.log(title, summary, category, coord);
 
     const reqTodo = {
-      memoId: window.crypto.randomUUID(), // int로 바꿔야..?
+      // memoId: window.crypto.randomUUID(), // int로 바꿔야..?
       title,
       content: summary,
       category,
-      latitude: detail.lat,
-      longitude: detail.lng
+      latitude: coord.lat,
+      longitude: coord.lng
     };
 
     console.log("newTodo ", reqTodo)
@@ -108,7 +115,7 @@ function HomeMemo() {
       });
   
 
-    const updatedTodos = [...todos, reqTodo];
+    const updatedTodos = [ reqTodo,...todos];
     setTodos(updatedTodos);
   
   };
@@ -142,8 +149,8 @@ function HomeMemo() {
         </div>
       </DefaultLayout>
 
-      <div className="container h-full ml-2 justify-between bg-gray-100 border-solid border-1 border-gray overflow-auto">
-        <TodoDetail detail={detail}/>
+      <div className="container mb-5 ml-2 justify-between bg-gray-100 border-solid border-1 border-gray overflow-auto">
+        <TodoDetail detail={detail} latestMemo={latestMemo}/>
       </div>
 
     </div>

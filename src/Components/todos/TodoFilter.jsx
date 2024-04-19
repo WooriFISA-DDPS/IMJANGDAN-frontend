@@ -10,9 +10,9 @@ const TodoFilter = () => {
             >
       {/* defaultValue? - https://react.dev/reference/react-dom/components/select */}
       <option value="all" defaultValue={'1'}>All</option>
-      <option value="TODO">{TODO_CATEGORY_ICON.TODO} Good</option>
-      <option value="PROGRESS">{TODO_CATEGORY_ICON.PROGRESS} SoSo</option>
-      <option value="DONE">{TODO_CATEGORY_ICON.DONE} Bad</option>
+      <option value="Good">{TODO_CATEGORY_ICON.Good} Good</option>
+      <option value="SoSo">{TODO_CATEGORY_ICON.SoSo} SoSo</option>
+      <option value="Bad">{TODO_CATEGORY_ICON.Bad} Bad</option>
   </select>
   )
 }

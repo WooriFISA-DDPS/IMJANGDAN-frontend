@@ -28,7 +28,7 @@ function Router() {
 				<Route path="/bbsupdate" element={<DefaultLayout><BbsUpdate /></DefaultLayout>}></Route>
 				<Route path="/bbsanswer/:parentSeq" element={<DefaultLayout><BbsAnswer /></DefaultLayout>}></Route>
 
-				<Route path="/homememo" element={<HomeMemo />}></Route>
+				<Route path="/homememo" element={<DefaultLayout><HomeMemo /></DefaultLayout>}></Route>
 				<Route path="/homememo/:latlng" element={<HomeMemo />}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
