@@ -10,6 +10,11 @@ const TodoDetail = ({ detail, latestMemo }) => {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const { auth, setAuth } = useContext(AuthContext);
 
+  // if(detail == null) return;
+  // if(detail == undefined) return;
+  // if(latestMemo == null) return;
+  // if(latestMemo == undefined) return;
+
   return (
     <div>
       {detail ? (
@@ -64,9 +69,61 @@ const TodoDetail = ({ detail, latestMemo }) => {
           <div className="block my-3"></div>
         </div>
       ) : (
-        <div className="my-5 py-80 text-6xl d-flex justify-content-center align-middle">
-          <p>메모 추가 하기</p>
+        
+        <div>
+          {/* Display fetched details */}
+          <div className="flex mt-2">
+            <div >
+              <select
+                className="w-30 h-30 bg-transparent text-6xl appearance-none leading-snug"
+                id="category"
+                value={latestMemo.category}
+                disabled
+              >
+                {" "}
+                <option value="Good">{TODO_CATEGORY_ICON.Good}</option>
+                <option value="SoSo">{TODO_CATEGORY_ICON.SoSo}</option>
+                <option value="Bad">{TODO_CATEGORY_ICON.Bad}</option>
+              </select>
+            </div>
+
+            <textarea
+              className="w-full text-xl font-bold  bg-transparent text-gray-900 border-none"
+              type="text"
+              value={latestMemo.title}
+              readOnly
+            >
+            </textarea>{" "}
+          </div>
+
+          <div>
+            <textarea
+              className="w-full p-2  text-gray-900 border-none"
+              id="summary"
+              rows="5"
+              value={latestMemo.content}
+              readOnly
+            />{" "}
+          </div>
+
+          <div>
+            <TodoRecord />
+          </div>
+
+          <div className="bg-navy-200">
+            <TodoPhoto/>
+          </div>
+
+          <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
+            <MemoMap lat={latestMemo.latitude} lng={latestMemo.longitude} />
+          </div>
+
+          <div className="block my-3"></div>
         </div>
+
+
+
+
       )}
     </div>
   );

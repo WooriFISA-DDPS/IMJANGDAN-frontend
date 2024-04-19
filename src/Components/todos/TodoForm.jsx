@@ -24,7 +24,7 @@ const TodoForm = ({ onAdd, onClose }) => {
 
         // App.jsx에서 내려받은 onAdd 호출
         // alert(coord)
-        window.confirm('여기 TodoForm의 setCoordFunction' + coord.lat +"," + coord.lng + '입니다.')
+        window.confirm('메모를 정말로 등록할까요?')
             ? onAdd({ title, summary, category, coord }) 
             : console.log("사용자가 작업을 취소하였음");
         // onAdd({ title, summary, category, coord });

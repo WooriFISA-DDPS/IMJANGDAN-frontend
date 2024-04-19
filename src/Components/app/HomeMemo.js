@@ -26,8 +26,6 @@ function HomeMemo() {
   const navigate = useNavigate();
   const [detail, setDetail] = useState(null);
   const [latestMemo, setLatestMemo] = useState(null); // Initialize with null
-  let count;
-
 
   const findItemById = async (id) => {
     try {
@@ -47,9 +45,6 @@ function HomeMemo() {
     // console.log("Set the detail : ", detail)
     setDetail(detail)
   }
-
-
-
   
   useEffect(() => {
     const fetchTodos = async () => {
@@ -70,7 +65,6 @@ function HomeMemo() {
         if (fetchedTodos.length > 0) { // Check if there are any todos
           setLatestMemo(filteredTodos[0]); // Update latestMemo with the first item
         }
-        console.log(latestMemo)
 
         setTodos([...dummyTodos, ...filteredTodos]);
       } catch (error) {
@@ -100,28 +94,32 @@ function HomeMemo() {
     await axios
       .post("http://localhost:8989/memo/write", reqTodo, { headers: headers })
       .then((resp) => {
-        console.log("[MEMOWrite.js] createMEMO() success :D");
-        console.log(resp.data);
-        const memoId = resp.data.memoId;
-        console.log("boardId:", memoId);
+        // console.log("[MEMOWrite.js] createMEMO() success :D");
+        // console.log(resp.data);
+        // console.log("boardId:", memoId);
         //fileUpload(memoId);
 
+        const receivedMemo = {
+          memoId: resp.data.memoId, // int로 바꿔야..?
+          title: resp.data.title,
+          summary: resp.data.content,
+          category: resp.data.category,
+          latitude: resp.data.latitude,
+          longitude: resp.data.longitude
+        };
+
+        const updatedTodos = [ receivedMemo, ...todos];
+        setTodos(updatedTodos);
+
         alert("새로운 메모를 성공적으로 등록했습니다 :D");
-       // navigate(`/bbsdetail/${resp.data.memoId}`); // 새롭게 등록한 글 상세로 이동
+        
       })
       .catch((err) => {
         console.log("[MEMOWrite.js] createMemo() error :<");
         console.log(err);
       });
   
-
-    const updatedTodos = [ reqTodo,...todos];
-    setTodos(updatedTodos);
-  
   };
-
-  
-
 
   useEffect(() => {
     // 컴포넌트가 렌더링될 때마다 localStorage의 토큰 값으로 headers를 업데이트
@@ -150,7 +148,7 @@ function HomeMemo() {
       </DefaultLayout>
 
       <div className="container mb-5 ml-2 justify-between bg-gray-100 border-solid border-1 border-gray overflow-auto">
-        <TodoDetail detail={detail} latestMemo={latestMemo}/>
+        {latestMemo ? <TodoDetail detail={detail} latestMemo={latestMemo}/> : null}
       </div>
 
     </div>
