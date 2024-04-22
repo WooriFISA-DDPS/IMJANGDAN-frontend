@@ -105,7 +105,8 @@ function HomeMemo() {
           summary: resp.data.content,
           category: resp.data.category,
           latitude: resp.data.latitude,
-          longitude: resp.data.longitude
+          longitude: resp.data.longitude,
+          attachments: resp.data.files // 1개의 첨부파일 아님! 첨부파일 목록을 가져옴.
         };
 
         const updatedTodos = [ receivedMemo, ...todos];
@@ -142,7 +143,8 @@ function HomeMemo() {
         <div className="container">
           <section className="static">
             <TodoHeader onAdd={addTodoHandler} />
-            <TodoBody todos={todos}  onFind={findItemById} />
+            {/* <TodoBody todos={todos}  onFind={findItemById} /> */}
+            <TodoBody todos={todos} setTodos={setTodos} onFind={findItemById} />
           </section>
         </div>
       </DefaultLayout>

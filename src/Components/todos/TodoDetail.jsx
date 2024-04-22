@@ -17,7 +17,8 @@ const TodoDetail = ({ detail, latestMemo }) => {
 
   return (
     <div>
-      {detail ? (
+      {/* 클릭한 경우 */}
+      {detail ? ( 
         <div>
           {/* Display fetched details */}
           <div className="flex mt-2">
@@ -54,13 +55,22 @@ const TodoDetail = ({ detail, latestMemo }) => {
             />{" "}
           </div>
 
-          <div>
-            <TodoRecord />
-          </div>
 
-          <div className="bg-navy-200">
-            <TodoPhoto/>
-          </div>
+          {detail.files ? 
+            <div>
+              <TodoRecord record={detail.files} />
+            </div> 
+          : 
+            null
+          }
+
+          {detail.files ? 
+            <div className="bg-navy-200">
+              <TodoPhoto  photo={detail.files} />
+            </div>
+          : 
+            null
+          }
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
             <MemoMap lat={detail.latitude} lng={detail.longitude} />
@@ -71,6 +81,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
       ) : (
         
         <div>
+        {/* latestMemo를 보여주는 경우 */}
           {/* Display fetched details */}
           <div className="flex mt-2">
             <div >
@@ -106,13 +117,21 @@ const TodoDetail = ({ detail, latestMemo }) => {
             />{" "}
           </div>
 
-          <div>
-            <TodoRecord />
-          </div>
+          {latestMemo.files ? 
+            <div>
+              <TodoRecord record={latestMemo.files} />
+            </div> 
+          : 
+            null
+          }
 
-          <div className="bg-navy-200">
-            <TodoPhoto/>
-          </div>
+          {latestMemo.files ? 
+            <div className="bg-navy-200">
+              <TodoPhoto  photo={latestMemo.files} />
+            </div>
+          : 
+            null
+          }
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
             <MemoMap lat={latestMemo.latitude} lng={latestMemo.longitude} />
@@ -120,9 +139,6 @@ const TodoDetail = ({ detail, latestMemo }) => {
 
           <div className="block my-3"></div>
         </div>
-
-
-
 
       )}
     </div>

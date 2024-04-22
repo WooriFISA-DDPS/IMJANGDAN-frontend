@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 // rafce
-const TodoItem = ({ todo, onFind }) => {
+const TodoItem = ({ todo, onFind, onDelete }) => {
   const navigate = useNavigate();
   // id값 받아서 상위 컴포넌트로 전달
   const findItemById2 = (id) => {
@@ -16,7 +16,6 @@ const TodoItem = ({ todo, onFind }) => {
   };
 
   const deleteMemo = async (id) => {
-    console.log(id);
     const isConfirmed = window.confirm("정말 삭제하시겠습니까?");
     if (isConfirmed) {
       // 삭제로직 시작
@@ -26,11 +25,9 @@ const TodoItem = ({ todo, onFind }) => {
           `http://localhost:8989/memo/${id}/delete`
         );
 
-        console.log(response);
-
         if (response.status == 200) {
           alert("게시글을 성공적으로 삭제했습니다 :D");
-          navigate(window.location.pathname);
+          onDelete(id); // 상위 컴포넌트의 삭제 로직 호출
         }
       } catch (error) {
         console.log("[TodoItem.js] deleteMemo() error :<");
