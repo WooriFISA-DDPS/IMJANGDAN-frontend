@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TODO_CATEGORY_ICON } from "../../constants/icon";
 import ReadOnlyMap from "../map/ReadOnlyMap";
 import { AuthContext } from "../context/AuthProvider";
@@ -15,9 +15,10 @@ const TodoDetail = ({ detail, latestMemo }) => {
   // if(latestMemo == null) return;
   // if(latestMemo == undefined) return;
 
+        
   return (
     <div>
-      {/* 클릭한 경우 */}
+      {/* 클릭한 경우, 즉 detail의 내용을 보여줄 경우 */}
       {detail ? ( 
         <div>
           {/* Display fetched details */}
@@ -55,22 +56,30 @@ const TodoDetail = ({ detail, latestMemo }) => {
             />{" "}
           </div>
 
+          
 
-          {detail.files ? 
-            <div>
-              <TodoRecord record={detail.files} />
-            </div> 
+          {(detail.files && detail.files.length > 0)  ? 
+          <div>
+            <TodoRecord 
+              memoId={detail.memoId} 
+              record={detail.files.filter(file => file.fileType.startsWith('audio/'))[0]} 
+            />
+          </div> 
           : 
             null
           }
 
-          {detail.files ? 
-            <div className="bg-navy-200">
-              <TodoPhoto  photo={detail.files} />
-            </div>
+          {(detail.files && detail.files.length > 0)  ? 
+          <div>
+            <TodoPhoto 
+              memoId={detail.memoId} 
+              photo={detail.files.filter(file => file.fileType.startsWith('image/'))[0]} 
+            />
+          </div> 
           : 
             null
           }
+
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
             <ReadOnlyMap lat={detail.latitude} lng={detail.longitude} />
@@ -112,26 +121,27 @@ const TodoDetail = ({ detail, latestMemo }) => {
               className="w-full p-2  text-gray-900 border-none"
               id="summary"
               rows="5"
-              value={latestMemo.content}
+              value={latestMemo.summary}
               readOnly
             />{" "}
           </div>
 
-          {latestMemo.files ? 
+          {(latestMemo.files && latestMemo.files.length > 0)  ? 
             <div>
-              <TodoRecord record={latestMemo.files} />
+              <TodoRecord memoId={latestMemo.memoId} record={latestMemo.files.filter(file => file.fileType.startsWith('audio/'))[0]} />
             </div> 
           : 
             null
           }
 
-          {latestMemo.files ? 
-            <div className="bg-navy-200">
-              <TodoPhoto  photo={latestMemo.files} />
-            </div>
+          {(latestMemo.files && latestMemo.files.length > 0)  ? 
+            <div>
+              <TodoPhoto memoId={latestMemo.memoId}  photo={latestMemo.files.filter(file => file.fileType.startsWith('image/'))[0]} />
+            </div> 
           : 
             null
-          }
+          }   
+
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
             <ReadOnlyMap lat={latestMemo.latitude} lng={latestMemo.longitude} />

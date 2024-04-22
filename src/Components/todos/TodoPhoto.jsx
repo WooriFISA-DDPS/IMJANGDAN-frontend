@@ -1,11 +1,16 @@
 import React from 'react'
 
-function TodoPhoto() {
-  return (
+function TodoPhoto({memoId, photo}) {
+
+  return (  
     <div className='bg-pink-100 h-60 my-3'>
-        TodoPhoto
+    {(photo && photo.fileId) ?
+      <img src={`http://localhost:8989/memo/${memoId}/file/download?fileId=${photo.fileId}`} />
+      :
+      null
+    }
     </div>
-  )
+  );
 }
 
-export default TodoPhoto
+export default TodoPhoto;

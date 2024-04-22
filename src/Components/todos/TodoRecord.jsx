@@ -1,12 +1,25 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 
-function TodoRecord({record}) {
-  return (
-    <div className='bg-pink-300'>
-      🎤 녹음: {record[0].originFileName}
+
+const StyledAudio = styled.audio`
+  width: 100%;
+`;
+
+function TodoAudio({memoId, record}) {
+
+  return (  
+    <div className='bg-pink-100 my-3'>
+      {(record && record.fileId) ?
+
+      <StyledAudio controls src={`http://localhost:8989/memo/${memoId}/file/download?fileId=${record.fileId}`}>
+        Your browser does not support the audio element.
+      </StyledAudio>
+      :
+      <p>첨부된 오디오가 없습니다.</p>
+      }
     </div>
-
-  )
+  );
 }
 
-export default TodoRecord
+export default TodoAudio;

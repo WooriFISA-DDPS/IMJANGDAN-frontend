@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -45,7 +45,7 @@ function HomeMemo() {
     // console.log("Set the detail : ", detail)
     setDetail(detail)
   }
-  
+
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -63,7 +63,28 @@ function HomeMemo() {
         }));
 
         if (fetchedTodos.length > 0) { // Check if there are any todos
-          setLatestMemo(filteredTodos[0]); // Update latestMemo with the first item
+
+          await axios
+            .get(`http://localhost:8989/memo/${filteredTodos[0].memoId}`, { headers: headers })
+            .then((resp) => {
+              const receivedMemo = {
+                memoId: resp.data.memoId,
+                title: resp.data.title,
+                content: resp.data.content,
+                category: resp.data.category,
+                latitude: resp.data.latitude,
+                longitude: resp.data.longitude,
+                files: resp.data.files // 1개의 첨부파일 아님! 첨부파일 목록을 가져옴.
+              };
+              
+              setLatestMemo(receivedMemo); // Update latestMemo with the first item
+              setdetailFunction(receivedMemo);
+            })
+            .catch((err) => {
+              console.log("[MEMOWrite.js] createMemo() error :<");
+              console.log(err);
+            });
+
         }
 
         setTodos([...dummyTodos, ...filteredTodos]);
@@ -94,10 +115,6 @@ function HomeMemo() {
     await axios
       .post("http://localhost:8989/memo/write", reqTodo, { headers: headers })
       .then((resp) => {
-        // console.log("[MEMOWrite.js] createMEMO() success :D");
-        // console.log(resp.data);
-        // console.log("boardId:", memoId);
-        //fileUpload(memoId);
 
         const receivedMemo = {
           memoId: resp.data.memoId, // int로 바꿔야..?
@@ -109,17 +126,17 @@ function HomeMemo() {
           attachments: resp.data.files // 1개의 첨부파일 아님! 첨부파일 목록을 가져옴.
         };
 
-        const updatedTodos = [ receivedMemo, ...todos];
+        const updatedTodos = [receivedMemo, ...todos];
         setTodos(updatedTodos);
 
         alert("새로운 메모를 성공적으로 등록했습니다 :D");
-        
+
       })
       .catch((err) => {
         console.log("[MEMOWrite.js] createMemo() error :<");
         console.log(err);
       });
-  
+
   };
 
   useEffect(() => {
@@ -139,7 +156,7 @@ function HomeMemo() {
   return (
     <div className="flex my-4">
       <DefaultLayout>
-        
+
         <div className="container">
           <section className="static">
             <TodoHeader onAdd={addTodoHandler} />
@@ -150,12 +167,12 @@ function HomeMemo() {
       </DefaultLayout>
 
       <div className="container mb-5 ml-2 justify-between bg-gray-100 border-solid border-1 border-gray overflow-auto">
-        {latestMemo ? <TodoDetail detail={detail} latestMemo={latestMemo}/> : null}
+        {latestMemo ? <TodoDetail detail={detail} latestMemo={latestMemo} /> : null}
       </div>
 
     </div>
-      
-    
+
+
 
     //     </div>
     // </div>
