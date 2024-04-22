@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TODO_CATEGORY_ICON } from "../../constants/icon";
-import MemoMap from "../map/MemoMap";
+import ReadOnlyMap from "../map/ReadOnlyMap";
 import { AuthContext } from "../context/AuthProvider";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import TodoPhoto from "./TodoPhoto";
@@ -63,7 +63,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
           </div>
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
-            <MemoMap lat={detail.latitude} lng={detail.longitude} />
+            <ReadOnlyMap lat={detail.latitude} lng={detail.longitude} />
           </div>
 
           <div className="block my-3"></div>
@@ -115,7 +115,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
           </div>
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
-            <MemoMap lat={latestMemo.latitude} lng={latestMemo.longitude} />
+            <ReadOnlyMap lat={latestMemo.latitude} lng={latestMemo.longitude} />
           </div>
 
           <div className="block my-3"></div>

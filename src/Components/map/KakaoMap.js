@@ -14,7 +14,6 @@ const mapDefaultSize = {
 }
 
 const  KakaoMap = ({getCoordFunction, setCoordFunction: setCoordToParent}) => {
-	
 	useKakaoLoader();
   
 	const [coord, setCoord] = useState(defaultCoord)
@@ -58,7 +57,7 @@ const  KakaoMap = ({getCoordFunction, setCoordFunction: setCoordToParent}) => {
 				{/* <button onClick={getAddress}>현재 좌표의 주소 얻기</button> */}
 			</Map>
       {coord ? (
-        `클릭한 위치의 위도는 ${coord.lat}이고, 경도는 ${coord.lng}입니다.`
+        `( ${coord.lat}, ${coord.lng} )`
       ) : (
         <p>위치를 지정해주세요.</p> // coord 없으면 나올 말
       )}

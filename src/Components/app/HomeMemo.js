@@ -55,7 +55,7 @@ function HomeMemo() {
         const filteredTodos = fetchedTodos.map((todo) => ({
           memoId: todo.memoId,
           title: todo.title,
-          summary: todo.content,
+          summary: todo.content, // db에는 content로 저장되어 있음 
           category: todo.category,
           latitude: todo.latitude,
           longitude: todo.longitude,
@@ -129,7 +129,7 @@ function HomeMemo() {
 
     // 로그인한 사용자인지 체크
     if (!auth) {
-      alert("로그인 한 사용자만 게시글을 작성할 수 있습니다 !");
+      alert("로그인 한 사용자만 메모를 작성할 수 있습니다 !");
       navigate(-1);
     }
   }, []);
