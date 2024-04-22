@@ -5,6 +5,7 @@ function TodoRecord({record}) {
     <div className='bg-pink-300'>
       🎤 녹음: {record[0].originFileName}
     </div>
+
   )
 }
 
