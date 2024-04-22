@@ -33,8 +33,7 @@ function Join() {
 
 	/* 아이디 중복 체크 */
 	const checkEmailDuplicate = async () => {
-
-		await axios.get("http://localhost:8989/user/checkId", { params: { email: email } })
+		await axios.get(`${process.env.REACT_APP_API_URL}/user/checkId`, { params: { email: email } })
 			.then((resp) => {
 				console.log("[Join.js] checkEmailDuplicate() success :D");
 				console.log(resp.data);
@@ -67,7 +66,7 @@ function Join() {
 			regionId: regionId,
 		}
 
-		await axios.post("http://localhost:8989/user/register", req)
+		await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, req)
 			.then((resp) => {
 				console.log("[Join.js] join() success :D");
 				console.log(resp.data);

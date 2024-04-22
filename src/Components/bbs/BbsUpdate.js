@@ -19,6 +19,7 @@ function BbsUpdate() {
 	const [content, setContent] = useState(bbs.content);
 	const [files, setFiles] = useState([]);
 	const [severFiles, setSeverFiles ] = useState(bbs.files || []);
+	const API_URL = process.env.REACT_APP_API_URL;
 
 	const changeTitle = (event) => {
 		setTitle(event.target.value);
@@ -57,7 +58,7 @@ function BbsUpdate() {
 		const fd = new FormData();
 		files.forEach((file) => fd.append(`file`, file));
 
-		await axios.post(`http://localhost:8989/board/${boardId}/file/upload`, fd, {headers: headers})
+		await axios.post(`${API_URL}/board/${boardId}/file/upload`, fd, {headers: headers})
 			.then((resp) => {
 				console.log("[file.js] fileUpload() success :D");
 				console.log(resp.data);
@@ -75,7 +76,7 @@ function BbsUpdate() {
 	/* 파일 삭제 */
 	const fileDelete = async (boardId, fileId) => {
 		try {
-			await axios.delete(`http://localhost:8989/board/${boardId}/file/delete?fileId=${fileId}`, {headers: headers});
+			await axios.delete(`${API_URL}/board/${boardId}/file/delete?fileId=${fileId}`, {headers: headers});
 				console.log("[BbsUpdate.js] fileDelete() success :D");
 				alert("파일 삭제 성공 :D");
 		} catch (error) {
@@ -93,7 +94,7 @@ function BbsUpdate() {
 			content: content
 		}
 
-		await axios.patch(`http://localhost:8989/board/${bbs.boardId}/update`, req, {headers: headers})
+		await axios.patch(`${API_URL}/board/${bbs.boardId}/update`, req, {headers: headers})
 		.then((resp) => {
 			console.log("[BbsUpdate.js] updateBbs() success :D");
 			console.log(resp.data);

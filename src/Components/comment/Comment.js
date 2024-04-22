@@ -22,6 +22,8 @@ function Comment(props) {
 	const changeContent = (event) => {
 		setContent(event.target.value);
 	};
+	const API_URL = process.env.REACT_APP_API_URL;
+
 
 	/* 댓글 수정 */
 	const updateComment = async () => {
@@ -30,7 +32,7 @@ function Comment(props) {
 			content: content
 		};
 
-		await axios.patch(`http://localhost:8989/board/${boardId}/comment/update/${commentId}`, req, {headers: headers})
+		await axios.patch(`${API_URL}/board/${boardId}/comment/update/${commentId}`, req, {headers: headers})
 		.then((resp) => {
 			console.log("[Comment.js] updateComment() success :D");
 			console.log(resp.data);
@@ -52,7 +54,7 @@ function Comment(props) {
 
 	/* 댓글 삭제 */
 	const deleteComment = async () => {
-		await axios.delete(`http://localhost:8989/board/${boardId}}/comment/delete/${commentId}`, {headers: headers})
+		await axios.delete(`${API_URL}/board/${boardId}}/comment/delete/${commentId}`, {headers: headers})
 			.then((resp) => {
 				console.log("[BbsComment.js] deleteComment() success :D");
 				console.log(resp.data);

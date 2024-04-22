@@ -30,8 +30,8 @@ function Header() {
                   <i className="fas fa-home"></i> IMJANGDAN
                 </Link> */}
                 <NavbarMenu className="nav-item"
-                  rel='noopener noreferrer' 
-                  href="http://localhost:8989/memomap">
+                  rel='noopener noreferrer'
+                  href={`${process.env.REACT_APP_API_URL}/memomap`}>
                   <i className="fas fa-home"></i> IMJANGDAN
                 </NavbarMenu>
 
