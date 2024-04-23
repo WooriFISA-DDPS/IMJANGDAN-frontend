@@ -20,7 +20,7 @@ function Header() {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <div className="container">
           <div
-            className="navbar-collapse justify-content-between"
+            className="navbar-collapse justify-content-between  sm:hidden"
             id="navbar-content"
           >
             <ul className="navbar-nav mr-auto">

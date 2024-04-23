@@ -117,7 +117,7 @@ function HomeMemo() {
       .then((resp) => {
 
         const receivedMemo = {
-          memoId: resp.data.memoId, // int로 바꿔야..?
+          memoId: resp.data.memoId,
           title: resp.data.title,
           summary: resp.data.content,
           category: resp.data.category,
@@ -154,10 +154,10 @@ function HomeMemo() {
 
 
   return (
-    <div className="flex my-4">
+    <div className="flex mt-2" >
       <DefaultLayout>
-
-        <div className="container">
+        
+        <div className="mr-3">
           <section className="static">
             <TodoHeader onAdd={addTodoHandler} />
             {/* <TodoBody todos={todos}  onFind={findItemById} /> */}

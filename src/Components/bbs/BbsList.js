@@ -80,7 +80,7 @@ function BbsList() {
   return (
     <div>
       {/* 검색 */}
-      <table className="search">
+      <table className="search my-2">
         <tbody>
           <tr>
             <td>
@@ -110,21 +110,20 @@ function BbsList() {
                 className="btn btn-outline-secondary"
                 onClick={search}
               >
-                <i className="fas fa-search"></i> 검색
+                <i className="fas fa-search"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <br />
 
       <table className="table table-hover">
-        <thead>
+        <thead className="bg-slate-100">
           <tr>
             <th className="col-1">번호</th>
-            <th className="col-7">제목</th>
-            <th className="col-3">작성자</th>
-            <th className="col-1">조회수</th>
+            <th className="col-6">제목</th>
+            <th className="col-2">작성자</th>
+            <th className="col-2">조회수</th>
           </tr>
         </thead>
 
@@ -158,16 +157,21 @@ function BbsList() {
 /* 글 목록 테이블 행 컴포넌트 */
 function TableRow(props) {
   const bbs = props.obj;
+  const writerNameParts = bbs.writerName.split("@");
+  const nameBeforeAt = writerNameParts[0];
 
+  
   return (
     <tr>
-      <th>{props.cnt}</th>
-      <td>
-        <Link to={{ pathname: `/bbsdetail/${bbs.boardId}` }}>
+      <th style={{ textAlign: 'center'}}>{ props.cnt }</th>
+      <td >
+        <Link 
+          to={{ pathname: `/bbsdetail/${bbs.boardId}` }}
+          >
           <span className="underline bbs-title">{bbs.title}</span>
         </Link>
       </td>
-      <td>{bbs.writerName}</td>
+      <td>{ nameBeforeAt }</td>
       <td style={{ textAlign: 'center' }}>{bbs.viewCount}</td>
     </tr>
   );

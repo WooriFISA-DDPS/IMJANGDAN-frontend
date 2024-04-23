@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Modal from "../ui/Modal.jsx";
 import TodoEditForm from "./TodoEditForm.jsx";
+import TodoDetail from "./TodoDetail.jsx";
 
 // rafce
 const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
@@ -11,15 +12,16 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
 
   // State for modal visibility
   const [isOpen, setIsOpen] = useState(false);
-  
-  const navigate = useNavigate();
+  const [detail, setDetail] = useState(null);
+  const [latestMemo, setLatestMemo] = useState(null); // Initialize with null
 
+
+  const navigate = useNavigate();
 
   // id값 받아서 상위 컴포넌트로 전달
   const findItemById2 = (id) => {
     onFind(id);
   };
-
 
   const handlePencilClick = () => {
     setIsOpen(true); // Open modal for editing
@@ -32,7 +34,6 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
   const deleteMemo = async (id) => {
     const isConfirmed = window.confirm("정말 삭제하시겠습니까?");
     if (isConfirmed) {
-
       try {
         const response = await axios.delete(
           `http://localhost:8989/memo/${id}/delete`
@@ -58,7 +59,7 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
                   border-[1px] bg-gray-100 rounded-md shadow-xl"
         onClick={() => findItemById2(todo.memoId)}
       >
-        <div className="w-80">
+        <div className="w-80 overflow-hidden sm:w-52">
           <div className="flex ">
             <span className="text-xl font-lg mr-2">
               {TODO_CATEGORY_ICON[todo.category]}
@@ -87,7 +88,7 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
           </p>
         </div>
 
-        <div className="flex ml-auto mt-2 mb-4 w-1/6 justify-content-between">
+        <div className="flex ml-auto mt-2 mb-4 w-1/6 justify-content-between sm:w-20">
           <button
             className="z-1 drop-shadow-lg text-xl"
             onClick={handlePencilClick}
@@ -105,12 +106,16 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
 
       {isOpen && ( // Conditionally render the modal
         <Modal onClose={handleCloseModal}>
-          <TodoEditForm todo={todo} onEdit={onEdit} onClose={handleCloseModal} />
+          <TodoEditForm
+            todo={todo}
+            onEdit={onEdit}
+            onClose={handleCloseModal}
+          />
         </Modal>
       )}
-    </>
 
-    
+      
+    </>
   );
 };
 

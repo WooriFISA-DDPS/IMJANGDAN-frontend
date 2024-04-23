@@ -4,7 +4,7 @@ function TodoShow() {
   return (
     <>
       <select
-        className="p-2 text-gray-800 bg-gray-200 rounded mr-2"
+        className="p-2 text-gray-800 bg-gray-200 rounded mr-2 sm:w-30"
         data-cy="todo-filter"
       >
         {/* defaultValue? - https://react.dev/reference/react-dom/components/select */}

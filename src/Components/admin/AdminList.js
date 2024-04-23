@@ -110,7 +110,7 @@ function AdminList() {
                 className="btn btn-outline-secondary"
                 onClick={search}
               >
-                <i className="fas fa-search"></i> 검색
+                <i className="fas fa-search"></i>
               </button>
             </td>
           </tr>

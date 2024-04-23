@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
 import KakaoMapTest from '../app/KakaoMapTest'
 import BbsList from "../bbs/BbsList"
@@ -12,12 +13,34 @@ import Logout from "../member/Logout"
 import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
+import HomeMemoMobile from "../app/HomeMemoMobile";
 import KakaoMap from '../map/KakaoMap';
 import AdminList from "../admin/AdminList"
 import DefaultLayout from "../../layouts/DefaultLayout";
 
 
 function Router() {
+
+	function useIsMobile() {
+		const [isMobile, setIsMobile] = useState(false);
+	
+		useEffect(() => {
+			const handleResize = () => {
+				const width = window.innerWidth;
+				setIsMobile(width <= 768); // Adjust the threshold as needed (common breakpoint for mobile)
+			};
+	
+			window.addEventListener('resize', handleResize);
+	
+			handleResize(); // Call on initial render
+	
+			return () => window.removeEventListener('resize', handleResize);
+		}, []);
+	
+		return isMobile;
+	}
+
+	const isMobile = useIsMobile();
 
 	return (
 			<Routes>
@@ -28,7 +51,18 @@ function Router() {
 				<Route path="/bbsupdate" element={<DefaultLayout><BbsUpdate /></DefaultLayout>}></Route>
 				<Route path="/bbsanswer/:parentSeq" element={<DefaultLayout><BbsAnswer /></DefaultLayout>}></Route>
 
-				<Route path="/homememo" element={<DefaultLayout><HomeMemo /></DefaultLayout>}></Route>
+				<Route
+          path="/homememo"
+          element={
+            !isMobile ? (
+              <DefaultLayout>
+                <HomeMemo />
+              </DefaultLayout>
+            ) : (
+              <HomeMemoMobile />
+            )
+          }
+        />
 				<Route path="/homememo/:latlng" element={<HomeMemo />}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>

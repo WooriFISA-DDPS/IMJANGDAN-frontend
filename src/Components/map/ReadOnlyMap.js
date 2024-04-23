@@ -20,13 +20,14 @@ const ReadOnlyMap = ({ lat, lng }) => {
 
 	return (
 		<>
-			<Map
-				center={{ lat: lat, lng: lng }}
-				style={{ width: mapDefaultSize.width, height: mapDefaultSize.height }}
-				level={2}
-			>
-				<MapMarker position={coord} />
-			</Map>
+
+				<Map
+					center={{ lat: lat, lng: lng }}
+					style={{ width: mapDefaultSize.width, height: mapDefaultSize.height }}
+					level={2}
+				>
+					<MapMarker position={coord} />
+				</Map>
 			
 		</>
 	);
