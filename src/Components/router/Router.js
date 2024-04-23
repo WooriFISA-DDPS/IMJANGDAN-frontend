@@ -7,6 +7,7 @@ import BbsWrite from "../bbs/BbsWrite"
 import BbsDetail from "../bbs/BbsDetail"
 import BbsUpdate from "../bbs/BbsUpdate"
 import BbsAnswer from "../bbs/BbsAnswer"
+import NewsList from "../news/NewsList";
 import Join from "../member/Join"
 import Login from "../member/Login"
 import Logout from "../member/Logout"
@@ -14,7 +15,6 @@ import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import HomeMemo from "../app/HomeMemo";
 import HomeMemoMobile from "../app/HomeMemoMobile";
-import KakaoMap from '../map/KakaoMap';
 import AdminList from "../admin/AdminList"
 import DefaultLayout from "../../layouts/DefaultLayout";
 
@@ -27,7 +27,7 @@ function Router() {
 		useEffect(() => {
 			const handleResize = () => {
 				const width = window.innerWidth;
-				setIsMobile(width <= 768); // Adjust the threshold as needed (common breakpoint for mobile)
+				setIsMobile(width <= 645); // Adjust the threshold as needed (common breakpoint for mobile)
 			};
 	
 			window.addEventListener('resize', handleResize);
@@ -64,6 +64,8 @@ function Router() {
           }
         />
 				<Route path="/homememo/:latlng" element={<HomeMemo />}></Route>
+
+				<Route path="/newslist" element={<DefaultLayout><NewsList /></DefaultLayout>}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
 				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>

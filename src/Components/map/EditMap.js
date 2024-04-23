@@ -18,19 +18,18 @@ const EditMap = ({ getCoordFunction, setCoordFunction: setCoordToParent, lat, ln
 
   const [coord, setCoord] = useState(originalCoord)
   const { kakao } = window;
-  const geocoder = new kakao.maps.services.Geocoder();
   const [address, setAddress] = useState(); 
 
-  if (lat && lng) {
-    geocoder.coord2Address(lng, lat, (result, status) => {
-      if (status === 'OK') {
-      setAddress(result[0].address.address_name);
-      console.log(address)
-      } else {
-      console.error('Geocoding failed:', status);
-      }
-    });
-  }
+  // if (lat && lng) {
+  //   geocoder.coord2Address(lng, lat, (result, status) => {
+  //     if (status === 'OK') {
+  //     setAddress(result[0].address.address_name);
+  //     console.log(address)
+  //     } else {
+  //     console.error('Geocoding failed:', status);
+  //     }
+  //   });
+  // }
 
   useKakaoLoader();
 

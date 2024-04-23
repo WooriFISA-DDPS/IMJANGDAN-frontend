@@ -10,6 +10,10 @@ const TodoDetail = ({ detail, latestMemo }) => {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const { auth, setAuth } = useContext(AuthContext);
 
+  const handlePencilClick = () => {
+    console.log("TOdodetail"); // Open modal for editing
+  };
+
   // if(detail == null) return;
   // if(detail == undefined) return;
   // if(latestMemo == null) return;
@@ -25,7 +29,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
           <div className="flex mt-2">
             <div >
               <select
-                className="w-30 h-30 bg-transparent text-6xl appearance-none leading-snug"
+                className="text-6xl leading-snug bg-transparent appearance-none w-30 h-30"
                 id="category"
                 value={detail.category}
                 disabled
@@ -38,7 +42,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
             </div>
 
             <textarea
-              className="w-full text-xl font-bold  bg-transparent text-gray-900 border-none"
+              className="w-full text-xl font-bold text-gray-900 bg-transparent border-none"
               type="text"
               value={detail.title}
               readOnly
@@ -48,7 +52,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
 
           <div>
             <textarea
-              className="w-full p-2  text-gray-900 border-none"
+              className="w-full p-2 text-gray-900 border-none"
               id="summary"
               rows="5"
               value={detail.content}
@@ -95,7 +99,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
           <div className="flex mt-2">
             <div >
               <select
-                className="w-30 h-30 bg-transparent text-6xl appearance-none leading-snug"
+                className="text-6xl leading-snug bg-transparent appearance-none w-30 h-30"
                 id="category"
                 value={latestMemo.category}
                 disabled
@@ -108,7 +112,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
             </div>
 
             <textarea
-              className="w-full text-xl font-bold  bg-transparent text-gray-900 border-none"
+              className="w-full text-xl font-bold text-gray-900 bg-transparent border-none"
               type="text"
               value={latestMemo.title}
               readOnly
@@ -118,7 +122,7 @@ const TodoDetail = ({ detail, latestMemo }) => {
 
           <div>
             <textarea
-              className="w-full p-2  text-gray-900 border-none"
+              className="w-full p-2 text-gray-900 border-none"
               id="summary"
               rows="5"
               value={latestMemo.summary}
@@ -147,10 +151,14 @@ const TodoDetail = ({ detail, latestMemo }) => {
             <ReadOnlyMap lat={latestMemo.latitude} lng={latestMemo.longitude} />
           </div>
 
+          
+
           <div className="block my-3"></div>
         </div>
 
       )}
+
+      
     </div>
   );
 };

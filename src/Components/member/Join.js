@@ -88,51 +88,54 @@ function Join() {
 
 	return (
 		<div>
-			<table className="table">
-				<tbody>
-					<tr>
-						<th className="col-2">이메일</th>
-						<td>
-							<input type="text" value={email} onChange={changeEmail} size="50px" /> &nbsp; &nbsp;
-							<button className="btn btn-outline-danger" onClick={checkEmailDuplicate}>
-								<i className="fas fa-check"></i> 이메일 중복 확인</button>
-						</td>
-					</tr>
+			<div className="flex justify-center px-3">
+				<table className="table">
+					<tbody>
+						<tr>
+							<th className="w-1/3">이메일</th>
+							<td>
+								<input className="w-full mb-2" type="text" value={email} onChange={changeEmail}/> 
+								<button className="w-full btn btn-outline-danger" onClick={checkEmailDuplicate}>
+									<i className="fas fa-check"></i> 이메일 중복 확인</button>
+							</td>
+						</tr>
 
-					<tr>
-						<th>사용자 이름</th>
-						<td>
-							<input type="text" value={name} onChange={changeName} size="50px" />
-						</td>
-					</tr>
-					<tr>
-						<th>사용자 전화번호</th>
-						<td>
-							<input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} size="50px" />
-						</td>
-					</tr>
-					<tr>
-						<th>사용자 행정동코드번호</th>
-						<td>
-							<input type="text" value={regionId} onChange={(e) => setRegionId(e.target.value)} size="50px" />
-						</td>
-					</tr>
+						<tr>
+							<th>닉네임</th>
+							<td>
+								<input type="text" value={name} onChange={changeName} className="w-full" />
+							</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>
+								<input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full" />
+							</td>
+						</tr>
+						<tr>
+							<th>관심지역</th>
+							{/* 카카오 지도로 받아야...? */}
+							<td>
+								<input type="text" value={regionId} onChange={(e) => setRegionId(e.target.value)} className="w-full" />
+							</td>
+						</tr>
 
-					<tr>
-						<th>비밀번호</th>
-						<td>
-							<input type="password" value={pwd} onChange={changePwd} size="50px" />
-						</td>
-					</tr>
+						<tr>
+							<th>비밀번호</th>
+							<td>
+								<input type="password" value={pwd} onChange={changePwd} className="w-full" />
+							</td>
+						</tr>
 
-					<tr>
-						<th>비밀번호 확인</th>
-						<td>
-							<input type="password" value={checkPwd} onChange={changeCheckPwd} size="50px" />
-						</td>
-					</tr>
-				</tbody>
-			</table><br />
+						<tr>
+							<th>비밀번호 확인</th>
+							<td>
+								<input type="password" value={checkPwd} onChange={changeCheckPwd} className="w-full" />
+							</td>
+						</tr>
+					</tbody>
+				</table><br />
+			</div>
 
 			<div className="my-3 d-flex justify-content-center">
 				<button className="btn btn-outline-secondary" onClick={join}><i className="fas fa-user-plus"></i> 회원가입</button>

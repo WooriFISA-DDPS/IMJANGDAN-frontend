@@ -5,7 +5,7 @@ import { TODO_CATEGORY_ICON } from '../../constants/icon'
 
 const TodoFilter = () => {
   return (
-    <select className="p-2 text-gray-800 bg-gray-200 rounded"
+    <select className="p-2 text-gray-800 bg-gray-100 rounded"
             data-cy="todo-filter"
             >
       {/* defaultValue? - https://react.dev/reference/react-dom/components/select */}

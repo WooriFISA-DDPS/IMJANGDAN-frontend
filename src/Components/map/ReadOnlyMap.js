@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from '../../useKakaoLoader';
 
@@ -9,27 +9,29 @@ const mapDefaultSize = {
 	height: '200px'
 }
 
-const ReadOnlyMap = ({ lat, lng }) => {
 
+const ReadOnlyMap = ({ lat, lng }) => {
+	
+	const [draggable, setDraggable] = useState(false)
 	const coord = {
-		lat : lat,
-		lng : lng
+		lat: lat,
+		lng: lng
 	}
 
 	useKakaoLoader();
 
 	return (
-		<>
+		<div>
+			<Map
+				center={{ lat: lat, lng: lng }}
+				style={{ width: mapDefaultSize.width, height: mapDefaultSize.height }}
+				level={2}
+				draggable={draggable}
+			>
+				<MapMarker position={coord} />
+			</Map>
 
-				<Map
-					center={{ lat: lat, lng: lng }}
-					style={{ width: mapDefaultSize.width, height: mapDefaultSize.height }}
-					level={2}
-				>
-					<MapMarker position={coord} />
-				</Map>
-			
-		</>
+		</div>
 	);
 }
 export default ReadOnlyMap;

@@ -80,7 +80,7 @@ function BbsList() {
   return (
     <div>
       {/* 검색 */}
-      <table className="search my-2">
+      <table className="my-2 search">
         <tbody>
           <tr>
             <td>
@@ -89,7 +89,7 @@ function BbsList() {
                 value={choiceVal}
                 onChange={changeChoice}
               >
-                <option>검색 옵션 선택</option>
+                <option>검색 옵션</option>
                 <option value="title">제목</option>
                 <option value="content">내용</option>
                 <option value="writer">작성자</option>
@@ -120,10 +120,10 @@ function BbsList() {
       <table className="table table-hover">
         <thead className="bg-slate-100">
           <tr>
-            <th className="col-1">번호</th>
-            <th className="col-6">제목</th>
-            <th className="col-2">작성자</th>
-            <th className="col-2">조회수</th>
+            <th className="w-1/10">no</th>
+            <th className="w-7/10">제목</th>
+            <th className="overflow-hidden w-2/10">작성자</th>
+            {/* <th className="w-1/12">조회수</th> */}
           </tr>
         </thead>
 
@@ -160,19 +160,26 @@ function TableRow(props) {
   const writerNameParts = bbs.writerName.split("@");
   const nameBeforeAt = writerNameParts[0];
 
+  const truncateName = (text, maxLength) => {
+    return text.length > maxLength ? text.slice(0, maxLength - 3) + "..." : text;
+  };
+
+  const truncatedName = truncateName(nameBeforeAt, 10);
+
+
   
   return (
-    <tr>
+    <tr className="overflow-hidden">
       <th style={{ textAlign: 'center'}}>{ props.cnt }</th>
-      <td >
+      <td className="overflow-hidden w-7/10 text-ellipsis">
         <Link 
           to={{ pathname: `/bbsdetail/${bbs.boardId}` }}
           >
-          <span className="underline bbs-title">{bbs.title}</span>
+          <span className=" bbs-title">{bbs.title}</span>
         </Link>
       </td>
-      <td>{ nameBeforeAt }</td>
-      <td style={{ textAlign: 'center' }}>{bbs.viewCount}</td>
+      <td >{ truncatedName }</td>
+      {/* <td style={{ textAlign: 'center' }}>{bbs.viewCount}</td> */}
     </tr>
   );
 }

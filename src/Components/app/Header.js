@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -7,58 +7,86 @@ const NavbarMenu = styled.a`
   color: rgba(255,255,255,.75);
   display: block;
   padding: .5rem 1rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
-
+  padding-right: 1rem;
+  padding-left: 1rem;
 `;
+
 
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
+  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+
+  const handleDrawerToggle = () => {
+    setIsNavbarCollapsed(!isNavbarCollapsed); // Toggle collapse state
+  };
+
 
   return (
     <header>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <div className="container">
+
+          <NavbarMenu
+            className="flex justify-between nav-item "
+            rel='noopener noreferrer'
+            href="http://localhost:8989/memomap">
+            <i className="fas fa-home"> IMJANGDAN</i>
+
+          </NavbarMenu>
+
+          
+          {auth ? (
+                <div className="text-[rgba(255,255,255,.75)]">
+                  {/* 회원 정보 */}
+                  {auth} <i className="fab fa-ello"></i>
+                </div>): (<></>)}
+
+          <button
+            className="mr-3"
+            class="navbar-toggler"
+            type="button"
+            onClick={handleDrawerToggle}
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+
           <div
-            className="navbar-collapse justify-content-between  sm:hidden"
+            className={`navbar-collapse ${isNavbarCollapsed ? "hidden" : ""
+              }`}
             id="navbar-content"
           >
-            <ul className="navbar-nav mr-auto">
+
+            <ul class="navbar-nav me-auto">
               {/* 메인 화면 */}
               <li className="nav-item">
                 {/* <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i> IMJANGDAN
                 </Link> */}
-                <NavbarMenu className="nav-item"
-                  rel='noopener noreferrer' 
-                  href="http://localhost:8989/memomap">
-                  <i className="fas fa-home"></i> IMJANGDAN
-                </NavbarMenu>
-
               </li>
               {/* 메모 */}
               <li className="nav-item">
-                <Link className="nav-link" to="/homememo">
+                <Link className="nav-link" to="/homememo" onClick={handleDrawerToggle} >
                   메모
                 </Link>
               </li>
 
               {/* 뉴스 */}
               <li className="nav-item">
-                <Link className="nav-link" to="/news">
+                <Link className="nav-link" to="/newslist"  onClick={handleDrawerToggle}>
                   뉴스
                 </Link>
               </li>
 
               {/* 커뮤니티 */}
               <li className="nav-item">
-                <Link className="nav-link" to="/bbslist">
+                <Link className="nav-link" to="/bbslist" onClick={handleDrawerToggle} >
                   커뮤니티
                 </Link>
               </li>
-              
+
               {/* 공인중개사 */}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <div
                   className="nav-link"
                   id="navbarDropdown"
@@ -67,39 +95,38 @@ function Header() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  공인중개사
-                </div>
-              </li>
-              
-              {/* 파이낸싱 */}
-              <li className="nav-item">
-                <div
-                  className="nav-link"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  파이낸싱
-                </div>
-              </li>
+                    공인중개사
+                  </div>
+                </li>
+
+                {/* 파이낸싱 */}
+              {/* <li className="nav-item">
+                  <div
+                    className="nav-link"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                      파이낸싱
+                    </div>
+                  </li>  */}
             </ul>
-            <ul className="navbar-nav ml-auto">
+            <ul className="ml-auto navbar-nav">
               {auth ? (
                 <>
                   {/* 회원 정보 */}
-                  <li className="nav-item">
-                      <Link className="nav-link" to="/checkpwd">
-                        {/* <i className="fas fa-sign-out-alt"></i>*/}
-                        {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "} 
-                      </Link>
+                  <li className="nav-item"  onClick={handleDrawerToggle}>
+                    <Link className="nav-link" to="/checkpwd">
+                      회원 정보 수정
+                    </Link>
                   </li>
 
-                  
-                  
+
+
                   {/* 컬렉션 */}
-                  <li className="nav-item">
+                  <li className="nav-item"  onClick={handleDrawerToggle}>
                     <div
                       className="nav-link"
                       id="navbarDropdown"
@@ -139,7 +166,7 @@ function Header() {
 
                   {/* 로그아웃 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/logout">
+                    <Link className="nav-link" to="/logout"  onClick={handleDrawerToggle}>
                       <i className="fas fa-sign-out-alt"></i> 로그아웃
                     </Link>
                   </li>
@@ -148,14 +175,14 @@ function Header() {
                 <>
                   {/* 로그인 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/login">
+                    <Link className="nav-link" to="/login"  onClick={handleDrawerToggle}>
                       로그인
                     </Link>
                   </li>
 
                   {/* 회원가입 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/join">
+                    <Link className="nav-link" to="/join"  onClick={handleDrawerToggle}>
                       회원가입
                     </Link>
                   </li>
