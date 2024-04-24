@@ -12,7 +12,7 @@ import DefaultLayout from "../../layouts/DefaultLayout.jsx";
 import '../../css/main.css';
 import '../../css/style.css';
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
 // const { kakao } = window;
@@ -23,9 +23,13 @@ function HomeMemo() {
   const [todos, setTodos] = useState(dummyTodos);
   const { auth, setAuth } = useContext(AuthContext);
   const { headers, setHeaders } = useContext(HttpHeadersContext);
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [detail, setDetail] = useState(null);
   const [latestMemo, setLatestMemo] = useState(null); // Initialize with null
+
+  const latFromParam = searchParams.get("lat"); // 위도
+  const lngFromParam = searchParams.get("lng"); // 경도 
 
   const findItemById = async (id) => {
     try {
@@ -47,6 +51,7 @@ function HomeMemo() {
   }
 
   useEffect(() => {
+
     const fetchTodos = async () => {
       try {
         const response = await axios.get("http://localhost:8989/memo/list");
@@ -130,6 +135,7 @@ function HomeMemo() {
         setTodos(updatedTodos);
 
         alert("새로운 메모를 성공적으로 등록했습니다 :D");
+				navigate(`/homememo`); // 새롭게 등록한 글 상세로 이동
 
       })
       .catch((err) => {
@@ -159,7 +165,7 @@ function HomeMemo() {
         
         <div className="mr-3">
           <section className="static">
-            <TodoHeader onAdd={addTodoHandler} />
+            <TodoHeader latParam={latFromParam} lngParam={lngFromParam} onAdd={addTodoHandler} />
             {/* <TodoBody todos={todos}  onFind={findItemById} /> */}
             <TodoBody todos={todos} setTodos={setTodos} onFind={findItemById} />
           </section>

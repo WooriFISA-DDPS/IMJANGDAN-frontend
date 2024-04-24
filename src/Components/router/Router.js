@@ -63,7 +63,7 @@ function Router() {
             )
           }
         />
-				<Route path="/homememo/:latlng" element={<HomeMemo />}></Route>
+				<Route path="/homememo" element={<HomeMemo />}></Route>
 
 				<Route path="/newslist" element={<DefaultLayout><NewsList /></DefaultLayout>}></Route>
 

@@ -4,8 +4,8 @@ import useKakaoLoader from '../../useKakaoLoader';
 
 const center = {
   // 지도의 기본 중심좌표
-  lat: 37.5566803113882,
-  lng: 126.904501286522,
+  lat: 37.581512341234,
+  lng: 126.886012341234,
 }
 const mapDefaultSize = {
 	width: '100%',

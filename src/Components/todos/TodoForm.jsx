@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { TODO_CATEGORY_ICON } from "../../constants/icon";
 import KakaoMap from "../map/KakaoMap";
 
-const TodoForm = ({ onAdd, onClose }) => {
+const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
   const defaultCoord = {
     // 지도의 기본 중심좌표
-    lat: 37.581583445326686,
-    lng: 126.88600594032448,
+    lat: latParam ? latParam : 37.581512341234,
+    lng: lngParam ? lngParam : 126.886012341234,
   };
 
   // 각 입력폼 별 값들을 관리할 상태가 필요

@@ -2,11 +2,12 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from '../../useKakaoLoader';
 
-const defaultCoord = {
-  // 지도의 기본 중심좌표
-  lat: 37.5566803113882,
-  lng: 126.904501286522,
-}
+// const defaultCoord = {
+//   // 지도의 기본 중심좌표
+//   lat: 37.581512341234,
+//   lng: 126.886012341234,
+// }
+
 const mapDefaultSize = {
   // 메모 페이지 카카오맵의 기본 사이즈
 	width: '100%',
@@ -16,7 +17,7 @@ const mapDefaultSize = {
 const  KakaoMap = ({getCoordFunction, setCoordFunction: setCoordToParent}) => {
 	useKakaoLoader();
   
-	const [coord, setCoord] = useState(defaultCoord)
+	const [coord, setCoord] = useState(getCoordFunction())
 
   // // 위치 설정 핸들러 함수
   // const mapClickHandler = useCallback((_, mouseEvent) => {
@@ -36,7 +37,7 @@ const  KakaoMap = ({getCoordFunction, setCoordFunction: setCoordToParent}) => {
 	return (
 		<>
 			<Map 
-				center={{ lat: defaultCoord.lat, lng:defaultCoord.lng }} 
+				center={{ lat: coord.lat, lng:coord.lng }} 
 				style={{ width: mapDefaultSize.width, height: mapDefaultSize.height }} 
 				level={5}
         onClick={(_, mouseEvent) => {

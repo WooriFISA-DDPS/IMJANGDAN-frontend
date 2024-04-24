@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 // import TodoForm from '../TodoForm';
 import TodoForm from './TodoForm';
@@ -6,12 +6,19 @@ import TodoFilter from './TodoFilter';
 import Modal from '../ui/Modal';
 import TodoShow from './TodoShow';
 
-const TodoHeader = ({ onAdd }) => {
+const TodoHeader = ({latParam,lngParam, onAdd }) => {
 
   // 모달창 토글용 상태값
   const [isOpen, open] = useState(false);
   const openModal = () => open(true); // 
   const closeModal = () => open(false);
+
+  // latParam이 변경될 때 모달을 열기
+  useEffect(() => {
+    if (latParam !== undefined && latParam !== null && lngParam !== undefined && lngParam !== null) {
+      openModal();
+    }
+  }, [latParam, lngParam]); // latParam이 변경될 때만 useEffect 실행
 
   return (
     <div>
@@ -28,7 +35,7 @@ const TodoHeader = ({ onAdd }) => {
 
         {isOpen && createPortal(
           <Modal>
-            <TodoForm onAdd={onAdd} onClose={closeModal} />
+            <TodoForm latParam={latParam} lngParam={lngParam} onAdd={onAdd} onClose={closeModal} />
           </Modal>, document.body)}
         
         <div className='flex '>
