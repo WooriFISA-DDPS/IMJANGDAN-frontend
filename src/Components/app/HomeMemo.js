@@ -72,47 +72,6 @@ function HomeMemo() {
       });
   };
 
-  /* 파일 업로드 */
-  const fileUpload = async (memoId) => {
-    console.log("업로드할 파일 목록:", memoId, files);
-    const fd = new FormData();
-    files.forEach((file) => fd.append("file", file));
-
-    await axios
-      .post(`http://localhost:8989/memo/${memoId}/file/upload`, fd, { headers: headers })
-      .then((resp) => {
-        console.log("[memofile.js] fileUpload() success :D");
-        console.log(resp.data);
-
-        alert("파일 업로드 성공 :D");
-        setFiles([]);
-      })
-      .catch((err) => {
-        console.log("[FileData.js] fileUpload() error :<");
-        console.log(err);
-      });
-  };
-
-  /* 파일 업로드 */
-  const fileUpload = async (memoId) => {
-    console.log("업로드할 파일 목록:", memoId, files);
-    const fd = new FormData();
-    files.forEach((file) => fd.append("file", file));
-
-    await axios
-      .post(`http://localhost:8989/memo/${memoId}/file/upload`, fd, { headers: headers })
-      .then((resp) => {
-        console.log("[memofile.js] fileUpload() success :D");
-        console.log(resp.data);
-
-        alert("파일 업로드 성공 :D");
-        setFiles([]);
-      })
-      .catch((err) => {
-        console.log("[FileData.js] fileUpload() error :<");
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
 
