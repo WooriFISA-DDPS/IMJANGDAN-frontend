@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthProvider";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 
 function MemberUpdate(props) {
-    const { headers, setHeaders } = useContext(HttpHeadersContext);
+	const { headers, setHeaders } = useContext(HttpHeadersContext);
 	const [name, setName] = useState("");
 	const [pwd, setPwd] = useState("");
 	const [checkPwd, setCheckPwd] = useState("");

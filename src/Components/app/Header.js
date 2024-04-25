@@ -35,11 +35,7 @@ function Header() {
           </NavbarMenu>
 
           
-          {auth ? (
-                <div className="text-[rgba(255,255,255,.75)]">
-                  {/* 회원 정보 */}
-                  {auth} <i className="fab fa-ello"></i>
-                </div>): (<></>)}
+         
 
           <button
             className="mr-3"

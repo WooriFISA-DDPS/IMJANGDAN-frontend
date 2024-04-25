@@ -6,7 +6,7 @@ import TodoFilter from './TodoFilter';
 import Modal from '../ui/Modal';
 import TodoShow from './TodoShow';
 
-const TodoHeader = ({latParam,lngParam, onAdd }) => {
+const TodoHeader = ({latParam,lngParam, setFiles, onAdd }) => {
 
   // 모달창 토글용 상태값
   const [isOpen, open] = useState(false);
@@ -35,7 +35,13 @@ const TodoHeader = ({latParam,lngParam, onAdd }) => {
 
         {isOpen && createPortal(
           <Modal>
-            <TodoForm latParam={latParam} lngParam={lngParam} onAdd={onAdd} onClose={closeModal} />
+            <TodoForm 
+              latParam={latParam} 
+              lngParam={lngParam} 
+              setFiles={setFiles}  
+              onAdd={onAdd} 
+              onClose={closeModal} 
+            />
           </Modal>, document.body)}
         
         <div className='flex '>
