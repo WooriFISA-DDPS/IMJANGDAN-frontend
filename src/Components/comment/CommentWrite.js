@@ -17,13 +17,15 @@ function CommentWrite(props) {
 		setContent(event.target.value);
 	}
 
+	const API_URL = process.env.REACT_APP_API_URL;
+
 	const createComment = async() => {
 
 		const req = {
 			content: content,
 		}
 
-		await axios.post(`${process.env.REACT_APP_API_URL}/board/${boardId}/comment/write`, req, {headers: headers})
+		await axios.post(`${API_URL}/board/${boardId}/comment/write`, req, {headers: headers})
 		.then((resp) => {
 			console.log("[CommentWrite.js] createComment() success :D");
 			console.log(resp.data);
@@ -49,7 +51,7 @@ function CommentWrite(props) {
 					<div className="col-7">
 						<span className="comment-id" >{id}</span>
 					</div>
-					<div className="col-2 my-1 d-flex justify-content-end">
+					<div className="my-1 col-2 d-flex justify-content-end">
 						<button className="btn btn-outline-secondary" onClick={createComment}><i className="fas fa-comment-dots"></i> 댓글 추가</button>
 					</div>
 				</div>

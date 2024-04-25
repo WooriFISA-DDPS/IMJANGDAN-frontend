@@ -27,7 +27,9 @@ function MemberUpdate(props) {
 		setCheckPwd(event.target.value);
 	}
 
-    useEffect(() => {
+	const API_URL = process.env.REACT_APP_API_URL;
+
+	useEffect(() => {
         setHeaders({
             "Authorization": `Bearer ${localStorage.getItem("bbs_access_token")}`
         });
@@ -43,7 +45,7 @@ function MemberUpdate(props) {
 			username: name,
 		}
 
-		await axios.put(`${process.env.REACT_APP_API_URL}/user/update`, req, {headers: headers})
+		await axios.put(`${API_URL}/user/update`, req, {headers: headers})
 			.then((resp) => {
 				console.log("[MemberUpdate.js] update() success :D");
 				console.log(resp.data);

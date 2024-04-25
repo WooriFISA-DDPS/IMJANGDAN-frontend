@@ -32,9 +32,11 @@ function HomeMemo() {
   const latFromParam = searchParams.get("lat"); // 위도
   const lngFromParam = searchParams.get("lng"); // 경도 
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const findItemById = async (id) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/${id}`);
+      const response = await axios.get(`${API_URL}/memo/${id}`);
       // console.log("HomeMemo Fetched Memo Details:", fetchedDetail);
       setdetailFunction(response.data)
     } catch (error) {
@@ -77,7 +79,7 @@ function HomeMemo() {
 
     const fetchTodos = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/list`);
+        const response = await axios.get(`${API_URL}/memo/list`);
         const fetchedTodos = response.data.content;
 
         const filteredTodos = fetchedTodos.map((todo) => ({
@@ -142,7 +144,7 @@ function HomeMemo() {
     console.log("newTodo ", reqTodo)
 
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/memo/write`, reqTodo, { headers: headers })
+      .post(`${API_URL}/memo/write`, reqTodo, { headers: headers })
       .then((resp) => {
         const tempMemoId = resp.data.memoId
         fileUpload(tempMemoId)
