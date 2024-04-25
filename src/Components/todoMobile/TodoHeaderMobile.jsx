@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import TodoForm from '../todos/TodoForm';
 import TodoFilter from '../todos/TodoFilter';
 import Modal from '../ui/Modal';
 import TodoShow from '../todos/TodoShow';
 
-const TodoHeaderMobile = ({ onAdd }) => {
+const TodoHeaderMobile = ({latParam,lngParam, files, setFiles, onAdd }) => {
 
   // 모달창 토글용 상태값
   const [isOpen, open] = useState(false);
   const openModal = () => open(true); // 
   const closeModal = () => open(false);
 
+   // latParam이 변경될 때 모달을 열기
+   useEffect(() => {
+    if (latParam !== undefined && latParam !== null && lngParam !== undefined && lngParam !== null) {
+      openModal();
+    }
+  }, [latParam, lngParam]); // latParam이 변경될 때만 useEffect 실행
+
+
+
   return (
     <div>
       <div 
-        className="flex items-center justify-between mt-3 align-middle sm:p-1" 
+        className="w-[98%] fixed z-20 flex items-center justify-between py-3 pr-4 align-middle bg-white top-[55px]" 
+      
         id="task-control"
       >
         <button 
@@ -29,7 +39,14 @@ const TodoHeaderMobile = ({ onAdd }) => {
 
         {isOpen && createPortal(
           <Modal>
-            <TodoForm onAdd={onAdd} onClose={closeModal} />
+            <TodoForm 
+            latParam={latParam} 
+            lngParam={lngParam} 
+            files={files}  
+            setFiles={setFiles}  
+            onAdd={onAdd} 
+            onClose={closeModal} 
+          />
           </Modal>, document.body)}
         
         <div className='sm:flex sm:ml-3'>
