@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { TODO_CATEGORY_ICON } from "../../constants/icon";
 import KakaoMap from "../map/KakaoMap";
+import axios from "axios";
+import AudioRecorder from "../ui/VoiceRecorder";
 
-const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
+const TodoForm = ({ latParam,lngParam,setFiles:setFilesFromParam, onAdd, onClose }) => {
   const defaultCoord = {
     // 지도의 기본 중심좌표
     lat: latParam ? latParam : 37.581512341234,
@@ -14,6 +16,23 @@ const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
   const [summary, setSummary] = useState("");
   const [category, setCategory] = useState("Good"); //기본으로 들어가게 함
   const [coord, setCoord] = useState(defaultCoord); // 기본으로 둘 좌표 설정 ->현재위치를 자동으로 받으면 좋을 거같긴함
+  const [files, setFiles] = useState([]);
+
+
+  const handleChangeFile = (event) => {
+    // 총 5개까지만 허용
+    const selectedFiles = Array.from(event.target.files).slice(0, 5);
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    setFilesFromParam(files);
+  };
+
+  const handleRemoveFile = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    setFilesFromParam(files);
+  };
+
+  
+
 
   const getCoordFunction = () => {
     return coord;
@@ -30,13 +49,14 @@ const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
     // App.jsx에서 내려받은 onAdd 호출
     // alert(coord)
     window.confirm(
-      "여기 TodoForm의 setCoordFunction" +
-        coord.lat +
-        "," +
-        coord.lng +
-        "입니다."
+      // "여기 TodoForm의 setCoordFunction" +
+      //   coord.lat +
+      //   "," +
+      //   coord.lng +
+      //   "입니다."
+      "메모를 추가합니다"
     )
-      ? onAdd({ title, summary, category, coord })
+      ? onAdd({ title, summary, category, coord, files })
       : console.log("사용자가 작업을 취소하였음");
     // onAdd({ title, summary, category, coord });
     onClose(); // add동작 수행 후 모달창 닫기
@@ -83,6 +103,15 @@ const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
         <div>
           <label
             className="block mt-2 mb-2 text-xl text-gray-800"
+            htmlFor="summary"
+          >
+            음성 메모
+          </label>
+          <AudioRecorder />
+        </div>
+        <div>
+          <label
+            className="block mt-2 mb-2 text-xl text-gray-800"
             htmlFor="category"
           >
             카테고리
@@ -110,6 +139,37 @@ const TodoForm = ({ latParam,lngParam,onAdd, onClose }) => {
               getCoordFunction={getCoordFunction}
               setCoordFunction={setCoordFunction}
             />
+          </div>
+        </div>
+        <div>
+          <label
+            className="block mt-3 mb-2 text-xl text-gray-800"
+            htmlFor="summary"
+          >
+            사진
+          </label>
+          <div>
+            {files.map((file, index) => (
+                <div 
+                  key={index} 
+                  style={{ display: "flex", alignItems: "center"}}
+                >
+                  <p>
+                    <strong>FileName:</strong> {file.name}
+                  </p>
+                  <button className="delete-button" type="button" onClick={() => handleRemoveFile(index)}>
+                    x
+                  </button>
+                </div>
+              ))}
+              {files.length < 2 && (
+                <div>
+                  <input type="file" name="file" 
+                    onChange={handleChangeFile} 
+                    multiple="multiple" 
+                  />
+                </div>
+              )}
           </div>
         </div>
 

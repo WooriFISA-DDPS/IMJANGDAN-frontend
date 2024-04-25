@@ -15,7 +15,7 @@ const TodoHeaderMobile = ({ onAdd }) => {
   return (
     <div>
       <div 
-        className="flex items-center justify-between pt-3 align-middle sm:p-1" 
+        className="flex items-center justify-between mt-3 align-middle sm:p-1" 
         id="task-control"
       >
         <button 

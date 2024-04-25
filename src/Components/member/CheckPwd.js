@@ -6,6 +6,7 @@ import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import MemberUpdate from "./MemberUpdate";
 
 function CheckPwd() {
+    const { auth, setAuth } = useContext(AuthContext);
     const { headers, setHeaders } = useContext(HttpHeadersContext);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -57,6 +58,12 @@ function CheckPwd() {
 
     return (
         <div>
+             {auth ? (
+                <div className="pb-3 mt-3 text-xl">
+                  {/* 회원 정보 */}
+                  {auth}님 안녕하세요😀
+                </div>): (<></>)}
+
             {showMemberUpdate ? (
                 <MemberUpdate email={email} name={name} />
             ) : (

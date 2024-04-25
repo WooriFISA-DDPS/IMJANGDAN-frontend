@@ -56,13 +56,27 @@ const TodoDetail = ({ detail, latestMemo }) => {
             />{" "}
           </div>
 
+          {(detail.files && detail.files.length > 0)  ? 
           <div>
-            <TodoRecord />
-          </div>
+            <TodoRecord 
+              memoId={detail.memoId} 
+              record={detail.files.filter(file => file.fileType.startsWith('audio/'))[0]} 
+            />
+          </div> 
+          : 
+            null
+          }
 
-          <div className="bg-navy-200">
-            <TodoPhoto/>
-          </div>
+          {(detail.files && detail.files.length > 0)  ? 
+          <div>
+            <TodoPhoto 
+              memoId={detail.memoId} 
+              photo={detail.files.filter(file => file.fileType.startsWith('image/'))[0]} 
+            />
+          </div> 
+          : 
+            null
+          }
 
           <div className="w-full p-2 border-[1px] border-gray-300 bg-gray-100 text-gray-900 rounded">
             <ReadOnlyMap lat={detail.latitude} lng={detail.longitude} />
