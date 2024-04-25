@@ -22,7 +22,7 @@ function AdminList() {
   // 게시글 전체 조회
   const getAdminList = async (page) => {
     try {
-		const response = await axios.get("http://localhost:8989/user/memberlist", {
+		const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/memberlist`, {
 			params: {"page": page - 1},
 		  });
 
@@ -42,7 +42,7 @@ function AdminList() {
   // 게시글 검색
   const search = async () => {
     try {
-      const response = await axios.get("http://localhost:8989/users/search", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/search`, {
         params: {
           page: page - 1,
           title: choiceVal === "title" ? searchVal : "",

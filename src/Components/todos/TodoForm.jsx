@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { TODO_CATEGORY_ICON } from "../../constants/icon";
 import KakaoMap from "../map/KakaoMap";
-import axios from "axios";
 import AudioRecorder from "../ui/VoiceRecorder";
 
-const TodoForm = ({ latParam,lngParam,setFiles:setFilesFromParam, onAdd, onClose }) => {
+const TodoForm = ({ latParam, lngParam, files, setFiles:setFilesFromParam, onAdd, onClose }) => {
   const defaultCoord = {
     // 지도의 기본 중심좌표
     lat: latParam ? latParam : 37.581512341234,
@@ -16,19 +15,20 @@ const TodoForm = ({ latParam,lngParam,setFiles:setFilesFromParam, onAdd, onClose
   const [summary, setSummary] = useState("");
   const [category, setCategory] = useState("Good"); //기본으로 들어가게 함
   const [coord, setCoord] = useState(defaultCoord); // 기본으로 둘 좌표 설정 ->현재위치를 자동으로 받으면 좋을 거같긴함
-  const [files, setFiles] = useState([]);
-
+  // const [files, setFiles] = useState([]);
 
   const handleChangeFile = (event) => {
     // 총 5개까지만 허용
-    const selectedFiles = Array.from(event.target.files).slice(0, 5);
-    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-    setFilesFromParam(files);
+    const selectedFiles = Array.from(event.target.files).slice(0, 2);
+    console.log ("TodoForm selected files : ", selectedFiles)
+    // setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    setFilesFromParam(selectedFiles);
   };
 
   const handleRemoveFile = (index) => {
-    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-    setFilesFromParam(files);
+    setFilesFromParam((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    
+    // setFilesFromParam(files);
   };
 
   

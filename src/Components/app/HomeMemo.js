@@ -34,7 +34,7 @@ function HomeMemo() {
 
   const findItemById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8989/memo/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/${id}`);
       // console.log("HomeMemo Fetched Memo Details:", fetchedDetail);
       setdetailFunction(response.data)
     } catch (error) {
@@ -52,31 +52,31 @@ function HomeMemo() {
   }
 
   /* 파일 업로드 */
-  const fileUpload = async ( memoId ) => {
-    console.log("업로드할 파일 목록:", files);
-      // 파일 데이터 저장
-      const fd = new FormData();
-      files.forEach((file) => fd.append("file", file));
-  
-      await axios
-        .post(`http://localhost:8989/memo/${ memoId }/file/upload`, fd, { headers: headers })
-        .then((resp) => {
-          console.log("[memofile.js] fileUpload() success :D");
-          console.log(resp.data);
-  
-          alert("파일 업로드 성공 :D");
-        })
-        .catch((err) => {
-          console.log("[FileData.js] fileUpload() error :<");
-          console.log(err);
-        });
-    };
+  const fileUpload = async (memoId) => {
+    console.log("업로드할 파일 목록:", memoId, files);
+    const fd = new FormData();
+    files.forEach((file) => fd.append("file", file));
+
+    await axios
+      .post(`http://localhost:8989/memo/${memoId}/file/upload`, fd, { headers: headers })
+      .then((resp) => {
+        console.log("[memofile.js] fileUpload() success :D");
+        console.log(resp.data);
+
+        alert("파일 업로드 성공 :D");
+        setFiles([]);
+      })
+      .catch((err) => {
+        console.log("[FileData.js] fileUpload() error :<");
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
 
     const fetchTodos = async () => {
       try {
-        const response = await axios.get("http://localhost:8989/memo/list");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/list`);
         const fetchedTodos = response.data.content;
 
         const filteredTodos = fetchedTodos.map((todo) => ({
@@ -92,7 +92,7 @@ function HomeMemo() {
         if (fetchedTodos.length > 0) { // Check if there are any todos
 
           await axios
-            .get(`http://localhost:8989/memo/${filteredTodos[0].memoId}`, { headers: headers })
+            .get(`${process.env.REACT_APP_API_URL}/memo/${filteredTodos[0].memoId}`, { headers: headers })
             .then((resp) => {
               const receivedMemo = {
                 memoId: resp.data.memoId,
@@ -103,7 +103,7 @@ function HomeMemo() {
                 longitude: resp.data.longitude,
                 files: resp.data.files // 1개의 첨부파일 아님! 첨부파일 목록을 가져옴.
               };
-              
+
               setLatestMemo(receivedMemo); // Update latestMemo with the first item
               setdetailFunction(receivedMemo);
             })
@@ -141,10 +141,10 @@ function HomeMemo() {
     console.log("newTodo ", reqTodo)
 
     await axios
-      .post("http://localhost:8989/memo/write", reqTodo, { headers: headers })
+      .post(`${process.env.REACT_APP_API_URL}/memo/write`, reqTodo, { headers: headers })
       .then((resp) => {
         const tempMemoId = resp.data.memoId
-        fileUpload( tempMemoId )
+        fileUpload(tempMemoId)
 
         const receivedMemo = {
           memoId: resp.data.memoId,
@@ -155,12 +155,11 @@ function HomeMemo() {
           longitude: resp.data.longitude,
           attachments: resp.data.files // 1개의 첨부파일 아님! 첨부파일 목록을 가져옴.
         };
-        console.log("memoId : ", receivedMemo.memoId)
         const updatedTodos = [receivedMemo, ...todos];
         setTodos(updatedTodos);
 
         alert("새로운 메모를 성공적으로 등록했습니다 :D");
-				navigate(`/homememo`); // 새롭게 등록한 글 상세로 이동
+        navigate(`/homememo`); // 새롭게 등록한 글 상세로 이동
 
       })
       .catch((err) => {
@@ -185,24 +184,25 @@ function HomeMemo() {
 
 
   return (
-    <div className="flex mt-2" >
+    <div className="flex" >
       <DefaultLayout>
-        
+
         <div className="mr-3">
-          <section className="static">
-            <TodoHeader 
-              latParam={latFromParam} 
-              lngParam={lngFromParam}  
-              setFiles={setFiles} 
-              onAdd={addTodoHandler} 
+            <TodoHeader
+              latParam={latFromParam}
+              lngParam={lngFromParam}
+              files={files}
+              setFiles={setFiles}
+              onAdd={addTodoHandler}
             />
+          <section className="static mt-20 overflow-hidden">
             {/* <TodoBody todos={todos}  onFind={findItemById} /> */}
             <TodoBody todos={todos} setTodos={setTodos} onFind={findItemById} />
           </section>
         </div>
       </DefaultLayout>
 
-      <div className="container justify-between mb-5 ml-2 overflow-auto bg-gray-100 border-solid border-1 border-gray">
+      <div className="container justify-between mb-5 ml-2 overflow-auto bg-gray-100 border-solid sm:hidden border-1 border-gray">
         {latestMemo ? <TodoDetail detail={detail} latestMemo={latestMemo} /> : null}
       </div>
 
