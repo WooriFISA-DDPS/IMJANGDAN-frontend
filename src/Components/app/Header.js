@@ -29,7 +29,7 @@ function Header() {
           <NavbarMenu
             className="flex justify-between nav-item "
             rel='noopener noreferrer'
-            href="http://localhost:8989/memomap">
+            href={`${process.env.REACT_APP_API_URL}/memomap`}>
             <i className="fas fa-home"> IMJANGDAN</i>
 
           </NavbarMenu>

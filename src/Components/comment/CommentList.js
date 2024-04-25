@@ -26,7 +26,7 @@ function CommentList(props) {
 	}
 
 	const getCommentList = async (page) => {
-		await axios.get(`http://localhost:8989/board/${boardId}/comment/list`, { params: {"page": page - 1} })
+		await axios.get(`${process.env.REACT_APP_API_URL}/board/${boardId}/comment/list`, { params: {"page": page - 1} })
 			.then((resp) => {
 				console.log("[BbsComment.js] getCommentList() success :D");
 				console.log(resp.data);

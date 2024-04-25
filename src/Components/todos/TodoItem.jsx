@@ -36,7 +36,7 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
     if (isConfirmed) {
       try {
         const response = await axios.delete(
-          `http://localhost:8989/memo/${id}/delete`
+          `${process.env.REACT_APP_API_URL}/memo/${id}/delete`
         );
 
         if (response.status == 200) {
