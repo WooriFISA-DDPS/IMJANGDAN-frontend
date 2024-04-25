@@ -43,7 +43,7 @@ function MemberUpdate(props) {
 			username: name,
 		}
 
-		await axios.put("http://localhost:8989/user/update", req, {headers: headers})
+		await axios.put(`${process.env.REACT_APP_API_URL}/user/update`, req, {headers: headers})
 			.then((resp) => {
 				console.log("[MemberUpdate.js] update() success :D");
 				console.log(resp.data);

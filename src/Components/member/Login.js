@@ -33,7 +33,7 @@ function Login() {
 
 		console.log("#############",id, pwd)
 
-		await axios.post("http://localhost:8989/user/login", req)
+		await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, req)
 		.then((resp) => {
 			console.log("[Login.js] login() success :D");
 			console.log(resp.data);

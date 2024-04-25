@@ -12,7 +12,7 @@ function TodoAudio({memoId, record}) {
     <div className='bg-pink-100 my-3'>
       {(record && record.fileId) ?
 
-      <StyledAudio controls src={`http://localhost:8989/memo/${memoId}/file/download?fileId=${record.fileId}`}>
+      <StyledAudio controls src={`${process.env.REACT_APP_API_URL}/memo/${memoId}/file/download?fileId=${record.fileId}`}>
         Your browser does not support the audio element.
       </StyledAudio>
       :

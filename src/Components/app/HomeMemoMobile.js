@@ -40,7 +40,7 @@ function HomeMemoMobile() {
 
   const findItemById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8989/memo/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/${id}`);
       // console.log("HomeMemo Fetched Memo Details:", fetchedDetail);
       setdetailFunction(response.data)
       handleItemClick()
@@ -61,7 +61,7 @@ function HomeMemoMobile() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get("http://localhost:8989/memo/list");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/list`);
         const fetchedTodos = response.data.content;
 
         const filteredTodos = fetchedTodos.map((todo) => ({
@@ -104,7 +104,7 @@ function HomeMemoMobile() {
     console.log("newTodo ", reqTodo)
 
     await axios
-      .post("http://localhost:8989/memo/write", reqTodo, { headers: headers })
+      .post(`${process.env.REACT_APP_API_URL}/memo/write`, reqTodo, { headers: headers })
       .then((resp) => {
         // console.log("[MEMOWrite.js] createMEMO() success :D");
         // console.log(resp.data);
