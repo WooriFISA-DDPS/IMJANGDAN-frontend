@@ -35,11 +35,7 @@ function Header() {
           </NavbarMenu>
 
           
-          {auth ? (
-                <div className="text-[rgba(255,255,255,.75)]">
-                  {/* 회원 정보 */}
-                  {auth} <i className="fab fa-ello"></i>
-                </div>): (<></>)}
+         
 
           <button
             className="mr-3"
@@ -63,6 +59,12 @@ function Header() {
                 {/* <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i> IMJANGDAN
                 </Link> */}
+                <NavbarMenu className="nav-item"
+                  rel='noopener noreferrer'
+                  href={`${process.env.REACT_APP_API_URL}/memomap`}>
+                  <i className="fas fa-home"></i> IMJANGDAN
+                </NavbarMenu>
+
               </li>
               {/* 메모 */}
               <li className="nav-item">

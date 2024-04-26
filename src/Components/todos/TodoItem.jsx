@@ -18,6 +18,9 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
 
   const navigate = useNavigate();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
+
   // id값 받아서 상위 컴포넌트로 전달
   const findItemById2 = (id) => {
     onFind(id);
@@ -36,7 +39,7 @@ const TodoItem = ({ todo, onFind, onEdit, onDelete }) => {
     if (isConfirmed) {
       try {
         const response = await axios.delete(
-          `${process.env.REACT_APP_API_URL}/memo/${id}/delete`
+          `${API_URL}/memo/${id}/delete`
         );
 
         if (response.status == 200) {

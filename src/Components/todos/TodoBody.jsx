@@ -34,12 +34,14 @@ const TodoBody = ({ todos, setTodos, onFind }) => {
 	const isMobile = useIsMobile();
 
   return (
-    <ul className='px-0 '>
+    <ul className='px-0'>
       {todos.map((todo, index) => (
         isMobile ? (
           <TodoItemMobile key={index} todo={todo} onFind={findItemById} onDelete={deleteMemoById} />
         ) : ( // Render TodoItem for larger screens
+        <div >
           <TodoItem key={index} todo={todo} onFind={findItemById} onDelete={deleteMemoById} />
+        </div>
         )
       ))}
     </ul>

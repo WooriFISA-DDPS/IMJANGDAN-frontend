@@ -6,6 +6,7 @@ import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import MemberUpdate from "./MemberUpdate";
 
 function CheckPwd() {
+    const { auth, setAuth } = useContext(AuthContext);
     const { headers, setHeaders } = useContext(HttpHeadersContext);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -37,7 +38,8 @@ function CheckPwd() {
         }
 
         try {
-            const resp = await axios.post(`${process.env.REACT_APP_API_URL}/user/checkPwd`, req, { headers: headers });
+            const API_URL = process.env.REACT_APP_API_URL;
+            const resp = await axios.post(`${API_URL}/user/checkPwd`, req, { headers: headers });
             console.log("[MemberUpdate.js] checkPwd() success :D");
             console.log(resp.data);
             setEmail(resp.data.email);
@@ -57,6 +59,12 @@ function CheckPwd() {
 
     return (
         <div>
+             {auth ? (
+                <div className="pb-3 mt-3 text-xl">
+                  {/* 회원 정보 */}
+                  {auth}님 안녕하세요😀
+                </div>): (<></>)}
+
             {showMemberUpdate ? (
                 <MemberUpdate email={email} name={name} />
             ) : (

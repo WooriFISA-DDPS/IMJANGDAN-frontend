@@ -10,10 +10,12 @@ const FileManager = (props) => {
   const files = props.files;
   const navigate = useNavigate();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   /* 파일 삭제 */
   const fileDelete = async (boardId, fileId) => {
     try {
-      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/board/${boardId}/file/delete?fileId=${fileId}`, {headers: headers});
+      const response = await axios.delete(`${API_URL}/board/${boardId}/file/delete?fileId=${fileId}`, {headers: headers});
       console.log("[FielManager.js] fileDelete() success :D");
       console.log(response.data);
 
@@ -42,7 +44,7 @@ const FileManager = (props) => {
             <span>
               <strong>File Name:</strong> {file.originFileName} &nbsp;
               {/* 파일 다운로드 버튼 */}
-              <a href={`${process.env.REACT_APP_API_URL}/board/${boardId}/file/download?fileId=${file.fileId}`} download>
+              <a href={`${API_URL}/board/${boardId}/file/download?fileId=${file.fileId}`} download>
                 Download
               </a>
             </span>

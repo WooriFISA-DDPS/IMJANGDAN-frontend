@@ -6,7 +6,7 @@ import TodoFilter from './TodoFilter';
 import Modal from '../ui/Modal';
 import TodoShow from './TodoShow';
 
-const TodoHeader = ({latParam,lngParam, onAdd }) => {
+const TodoHeader = ({latParam,lngParam, files, setFiles, onAdd }) => {
 
   // 모달창 토글용 상태값
   const [isOpen, open] = useState(false);
@@ -21,9 +21,9 @@ const TodoHeader = ({latParam,lngParam, onAdd }) => {
   }, [latParam, lngParam]); // latParam이 변경될 때만 useEffect 실행
 
   return (
-    <div>
+    <div >
       <div 
-        className="flex items-center justify-between p-3 align-middle bg-gray-400 sm:p-1" 
+        className="mt-0 fixed top-[63px] z-20 w-[487px] flex items-center justify-between p-3 align-middle bg-gray-400" 
         id="task-control"
       >
         <button className="px-6 py-2 font-semibold text-gray-800 bg-gray-200 border-none rounded cursor-pointer sm:px-2"
@@ -35,10 +35,17 @@ const TodoHeader = ({latParam,lngParam, onAdd }) => {
 
         {isOpen && createPortal(
           <Modal>
-            <TodoForm latParam={latParam} lngParam={lngParam} onAdd={onAdd} onClose={closeModal} />
+            <TodoForm 
+              latParam={latParam} 
+              lngParam={lngParam} 
+              files={files}  
+              setFiles={setFiles}  
+              onAdd={onAdd} 
+              onClose={closeModal} 
+            />
           </Modal>, document.body)}
         
-        <div className='flex '>
+        <div className='flex ml-8'>
           <TodoShow />
           <TodoFilter />
         </div>

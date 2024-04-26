@@ -34,6 +34,8 @@ function BbsWrite() {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   /* 파일 업로드 */
   const fileUpload = async (boardId) => {
 	console.log("업로드할 파일 목록:", files);
@@ -42,7 +44,7 @@ function BbsWrite() {
     files.forEach((file) => fd.append("file", file));
 
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/board/${boardId}/file/upload`, fd, { headers: headers })
+      .post(`${API_URL}/board/${boardId}/file/upload`, fd, { headers: headers })
       .then((resp) => {
         console.log("[file.js] fileUpload() success :D");
         console.log(resp.data);
@@ -63,7 +65,7 @@ function BbsWrite() {
     };
 
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/board/write`, req, { headers: headers })
+      .post(`${API_URL}/board/write`, req, { headers: headers })
       .then((resp) => {
         console.log("[BbsWrite.js] createBbs() success :D");
         console.log(resp.data);

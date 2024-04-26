@@ -11,7 +11,7 @@
 // 			<div className="container">
 
 // 				<div className="navbar-collapse collapse justify-content-between" id="navbar-content">
-// 					<ul className="navbar-nav mr-auto">
+// 					<ul className="mr-auto navbar-nav">
 
 // 						{/* 메인 화면 */}
 // 						<li className="nav-item">
@@ -31,7 +31,7 @@
 // 							</div>
 // 						</li>
 // 					</ul>
-// 					<ul className="navbar-nav ml-auto">
+// 					<ul className="ml-auto navbar-nav">
 
 // 						{							
 // 							(auth) ?

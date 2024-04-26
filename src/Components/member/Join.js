@@ -33,7 +33,6 @@ function Join() {
 
 	/* 아이디 중복 체크 */
 	const checkEmailDuplicate = async () => {
-
 		await axios.get(`${process.env.REACT_APP_API_URL}/user/checkId`, { params: { email: email } })
 			.then((resp) => {
 				console.log("[Join.js] checkEmailDuplicate() success :D");

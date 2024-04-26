@@ -16,10 +16,11 @@ function BbsDetail() {
   const [ bbs, setBbs] = useState({});
   const { boardId } = useParams(); // 파라미터 가져오기
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const getBbsDetail = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/board/${boardId}`);
+      const response = await axios.get(`${API_URL}/board/${boardId}`);
 
       console.log("[BbsDetail.js] getBbsDetail() success :D");
       console.log(response.data);
@@ -33,7 +34,7 @@ function BbsDetail() {
 
   const deleteBbs = async () => {
     try {
-      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/board/${boardId}/delete`, {headers: headers});
+      const response = await axios.delete(`${API_URL}/board/${boardId}/delete`, {headers: headers});
 
       console.log("[BbsDetail.js] deleteBbs() success :D");
       console.log(response.data);
