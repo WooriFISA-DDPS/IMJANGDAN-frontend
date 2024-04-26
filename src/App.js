@@ -9,6 +9,11 @@ import "./css/style.css"
 import "./css/main.css"
 
 function App() {
+  if (process.env.NODE_ENV == 'production') {
+    console.log("Current Mode: Production Mode");
+  } else if (process.env.NODE_ENV == 'development') {
+    console.log("Current Mode: Development Mode");
+  }
 
   return (
     <div>
