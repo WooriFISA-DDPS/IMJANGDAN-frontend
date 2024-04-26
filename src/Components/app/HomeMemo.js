@@ -199,7 +199,7 @@ function HomeMemo() {
               setFiles={setFiles}
               onAdd={addTodoHandler}
             />
-          <section className="static mt-20 overflow-hidden">
+          <section className="static mt-16 overflow-hidden">
             {/* <TodoBody todos={todos}  onFind={findItemById} /> */}
             <TodoBody todos={todos} setTodos={setTodos} onFind={findItemById} />
           </section>

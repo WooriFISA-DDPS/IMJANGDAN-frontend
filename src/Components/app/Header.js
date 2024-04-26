@@ -59,11 +59,6 @@ function Header() {
                 {/* <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i> IMJANGDAN
                 </Link> */}
-                <NavbarMenu className="nav-item"
-                  rel='noopener noreferrer'
-                  href={`${process.env.REACT_APP_API_URL}/memomap`}>
-                  <i className="fas fa-home"></i> IMJANGDAN
-                </NavbarMenu>
 
               </li>
               {/* 메모 */}

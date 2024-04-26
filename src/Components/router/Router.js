@@ -44,7 +44,7 @@ function Router() {
 
 	return (
 			<Routes>
-				<Route path="/" element={<KakaoMapTest />}></Route>
+				`<Route path="/" element={<KakaoMapTest />}></Route>`
 				<Route path="/bbslist" element={<DefaultLayout><BbsList /></DefaultLayout>}></Route>
 				<Route path="/bbswrite" element={<DefaultLayout><BbsWrite /></DefaultLayout>}></Route>
 				<Route path="/bbsdetail/:boardId" element={<DefaultLayout><BbsDetail /></DefaultLayout>}></Route>
@@ -63,7 +63,6 @@ function Router() {
             )
           }
         />
-				<Route path="/homememo" element={<HomeMemo />}></Route>
 
 				<Route path="/newslist" element={<DefaultLayout><NewsList /></DefaultLayout>}></Route>
 

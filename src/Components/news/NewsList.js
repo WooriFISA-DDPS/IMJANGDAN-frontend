@@ -54,7 +54,13 @@ function NewsList() {
               <tr key={idx}>
                 <td style={{ textAlign: "center" }}>{news.id}</td>
                 <td className="w-7/10 text-ellipsis">{news.title}</td>
-                <td className="overflow-hidden w-2/10">{news.link}</td>
+                <td className="content-center">
+                  <a 
+                    href={news.link}  
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >🔗</a>
+                </td>
               </tr>
             );
           })}
@@ -66,7 +72,7 @@ function NewsList() {
         activePage={page}
         itemsCountPerPage={pageSize}
         totalItemsCount={totalCnt}
-        pageRangeDisplayed={totalPages}
+        pageRangeDisplayed={5}
         prevPageText={"‹"}
         nextPageText={"›"}
         onChange={changePage}

@@ -1,37 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { AudioRecorder } from 'react-audio-voice-recorder';
 
-function VoiceRecorder () {
-  
-  const addAudioElement = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement('audio');
-    audio.src = url;
-    audio.controls = true;
-    document.body.appendChild(audio);
+function VoiceRecorder() {
+  const [isRecording, setIsRecording] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [recordingBlob, setRecordingBlob] = useState(null);
+
+  const handleRecordingComplete = (blob) => {
+    setIsRecording(false);
+    setRecordingBlob(blob);
+    showConfirm(true); // Show confirmation dialog
   };
-  
+
+  const handleSaveRecording = async () => {
+    if (!recordingBlob) {
+      return; // Handle potential errors
+    }
+
+    // Implement backend logic to save recordingBlob (see previous explanation)
+
+    setShowConfirm(false);
+    setRecordingBlob(null); // Clear recording data
+  };
+
+  const handleCancelSave = () => {
+    setShowConfirm(false);
+    setRecordingBlob(null); // Clear recording data
+  };
+
   return (
-    <AudioRecorder
-        onRecordingComplete={addAudioElement}
+    <div>
+      <AudioRecorder
+        onStartRecording={() => setIsRecording(true)}
+        onStopRecording={handleRecordingComplete}
         audioTrackConstraints={{
           noiseSuppression: true,
           echoCancellation: true,
-          // autoGainControl,
-          // channelCount,
-          // deviceId,
-          // groupId,
-          // sampleRate,
-          // sampleSize,
         }}
         onNotAllowedOrFound={(err) => console.table(err)}
-        downloadOnSavePress={true}
-        downloadFileExtension="mp3"
+        downloadOnSavePress={false} // Disable user-side download
         mediaRecorderOptions={{
           audioBitsPerSecond: 128000,
         }}
-        // showVisualizer={true}
       />
+      {showConfirm && (
+        <div className="confirmation-modal">
+          <p>Do you want to save this recording?</p>
+          <button onClick={handleSaveRecording}>Save</button>
+          <button onClick={handleCancelSave}>Cancel</button>
+        </div>
+      )}
+    </div>
   );
 }
 
