@@ -134,3 +134,7 @@ dist
 .DS_Store
 .AppleDouble
 .LSOverride
+
+
+# Dependency directories
+build/
