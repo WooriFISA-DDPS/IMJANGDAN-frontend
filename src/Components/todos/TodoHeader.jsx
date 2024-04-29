@@ -12,6 +12,7 @@ const TodoHeader = ({latParam,lngParam, files, setFiles, onAdd }) => {
   const [isOpen, open] = useState(false);
   const openModal = () => open(true); // 
   const closeModal = () => open(false);
+  const [selectedOption, setSelectedOptionFromFilter] = React.useState('1');
 
   // latParam이 변경될 때 모달을 열기
   useEffect(() => {
