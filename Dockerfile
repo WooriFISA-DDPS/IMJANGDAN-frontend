@@ -11,6 +11,10 @@ RUN npm install
 
 # 나머지 소스 코드 복사
 COPY . .
+# COPY init-container.sh /app/init-container.sh
+
+# 스크립트 실행 허가
+RUN chmod +x /app/init-container.sh
 
 # React 애플리케이션 빌드
 RUN npm run build
@@ -21,5 +25,8 @@ RUN npm install -g serve
 # 노출시킬 포트 설정
 EXPOSE 3000
 
+# 컨테이너 시작 시마다 스크립트가 실행하도록
+CMD ["/app/init-container.sh"]
+
 # serve를 이용해 build 디렉토리의 정적 파일을 serve하기
-CMD ["serve", "-s", "build", "-l", "3000"]
+# CMD ["serve", "-s", "build", "-l", "3000"]
