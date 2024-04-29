@@ -136,5 +136,5 @@ dist
 .LSOverride
 
 
-# Dependency directories
+# build 폴더 자체를 커버해야 함
 build/
