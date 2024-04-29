@@ -1,4 +1,4 @@
-FROM docker pull node:20.11
+FROM node:20.11 
 
 # 애플리케이션 코드를 컨테이너 내부에 복사할 디렉토리 설정
 WORKDIR /app
