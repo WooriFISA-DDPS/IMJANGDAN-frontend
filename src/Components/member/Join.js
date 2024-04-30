@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 function Join() {
 
 	const [email, setEmail] = useState("");
-	const [name, setName] = useState("");
 	const [pwd, setPwd] = useState("");
 	const [phone, setPhone] = useState("");
 	const [regionId, setRegionId] = useState("");
@@ -19,17 +18,34 @@ function Join() {
 		setEmail(event.target.value);
 	}
 
-	const changeName = (event) => {
-		setName(event.target.value);
-	}
+    const changePwd = (event) => {
+        const inputValue = event.target.value;
+        if (inputValue.length <= 20) { // 최대 글자수를 20으로 제한
+            setPwd(inputValue);
+        }
+    }
 
-	const changePwd = (event) => {
-		setPwd(event.target.value);
-	}
+    const changeCheckPwd = (event) => {
+        const inputValue = event.target.value;
+        if (inputValue.length <= 20) { // 최대 글자수를 20으로 제한
+            setCheckPwd(inputValue);
+        }
+    }
 
-	const changeCheckPwd = (event) => {
-		setCheckPwd(event.target.value);
-	}
+    const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+    const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+
+    const emailCheck = (email) => {
+        return emailRegEx.test(email);
+    }
+
+    const passwordCheck = (pwd) => {
+        return passwordRegEx.test(pwd);
+    }
+
+    const passwordDoubleCheck = (pwd, passwordChk) => {
+        return pwd === passwordChk;
+    }
 
 	/* 아이디 중복 체크 */
 	const checkEmailDuplicate = async () => {
@@ -61,7 +77,6 @@ function Join() {
 			email: email,
 			password: pwd,
 			passwordCheck: checkPwd,
-			username: name,
 			phone: phone,
 			regionId: regionId,
 		}
@@ -71,7 +86,7 @@ function Join() {
 				console.log("[Join.js] join() success :D");
 				console.log(resp.data);
 
-				alert(resp.data.username + "님 회원가입을 축하드립니다 🎊");
+				alert(resp.data.email + "님 회원가입을 축하드립니다 🎊");
 				navigate("/login");
 
 			}).catch((err) => {
@@ -96,15 +111,11 @@ function Join() {
 								<input className="w-full mb-2" type="text" value={email} onChange={changeEmail}/> 
 								<button className="w-full btn btn-outline-danger" onClick={checkEmailDuplicate}>
 									<i className="fas fa-check"></i> 이메일 중복 확인</button>
+                                {!emailCheck(email) && <span className="text-red-500">유효한 이메일 주소를 입력하세요.</span>}
 							</td>
 						</tr>
 
-						<tr>
-							<th>닉네임</th>
-							<td>
-								<input type="text" value={name} onChange={changeName} className="w-full" />
-							</td>
-						</tr>
+					
 						<tr>
 							<th>전화번호</th>
 							<td>
@@ -120,18 +131,20 @@ function Join() {
 						</tr>
 
 						<tr>
-							<th>비밀번호</th>
-							<td>
-								<input type="password" value={pwd} onChange={changePwd} className="w-full" />
-							</td>
-						</tr>
+                            <th>비밀번호</th>
+                            <td>
+                                <input type="password" value={pwd} onChange={changePwd} className="w-full" />
+                                {!passwordCheck(pwd) && <span className="text-red-500">비밀번호는 영문 대소문자, 숫자를 혼합하여 8~20자로 입력하세요.</span>}
+                            </td>
+                        </tr>
 
-						<tr>
-							<th>비밀번호 확인</th>
-							<td>
-								<input type="password" value={checkPwd} onChange={changeCheckPwd} className="w-full" />
-							</td>
-						</tr>
+                        <tr>
+                            <th>비밀번호 확인</th>
+                            <td>
+                                <input type="password" value={checkPwd} onChange={changeCheckPwd} className="w-full" />
+                                {checkPwd && !passwordDoubleCheck(pwd, checkPwd) && <span className="text-red-500">비밀번호가 일치하지 않습니다.</span>}
+                            </td>
+                        </tr>
 					</tbody>
 				</table><br />
 			</div>
