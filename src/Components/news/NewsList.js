@@ -9,9 +9,11 @@ function NewsList() {
   const [totalPages, setTotalPages] = useState(0);
   const [totalCnt, setTotalCnt] = useState(0);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const getNewsList = async (page) => {
     try {
-      const response = await axios.get("http://localhost:8989/news/list", {
+      const response = await axios.get(`${API_URL}/news/list`, {
         params: { page: page - 1 },
       });
 

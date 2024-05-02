@@ -60,7 +60,7 @@ function HomeMemo() {
     files.forEach((file) => fd.append("file", file));
 
     await axios
-      .post(`http://localhost:8989/memo/${memoId}/file/upload`, fd, { headers: headers })
+      .post(`${API_URL}/memo/${memoId}/file/upload`, fd, { headers: headers })
       .then((resp) => {
         console.log("[memofile.js] fileUpload() success :D");
         console.log(resp.data);
