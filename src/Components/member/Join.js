@@ -33,12 +33,20 @@ function Join() {
         }
     }
 
-	const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
-    const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+	const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,8}$/;
+    
+    const passwordRegEx = /^[A-Za-z0-9]{4,20}$/;
+    
+    const phoneRegEx = /^0[1-9]\d{7,9}$/;
 
 	const emailCheck = (email) => {
         return emailRegEx.test(email);
     }
+
+    const phoneCheck = (phoneNumber) => {
+        return phoneRegEx.test(phoneNumber);
+    }
+    
 
 	const passwordCheck = (pwd) => {
         return passwordRegEx.test(pwd);
@@ -55,7 +63,7 @@ function Join() {
                 console.log("[Join.js] checkEmailDuplicate() success :D");
                 console.log(resp.data);
                 if (resp.status === 200) {
-                    alert("사용 가능한 이메일입니다.");
+                    alert("이메일 중복 확인!");
                 }
             })
             .catch((err) => {
@@ -111,6 +119,7 @@ function Join() {
                             <th>전화번호</th>
                             <td>
                                 <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full" />
+                                {!phoneCheck(phone) && <span className="text-red-500">유효한 한국 전화번호를 입력하세요.</span>}
                             </td>
                         </tr>
                         <tr>
@@ -124,7 +133,7 @@ function Join() {
                             <th>비밀번호</th>
                             <td>
                                 <input type="password" value={pwd} onChange={changePwd} className="w-full" />
-                                {!passwordCheck(pwd) && <span className="text-red-500">비밀번호는 영문 대소문자, 숫자를 혼합하여 8~20자로 입력하세요.</span>}
+                                {!passwordCheck(pwd) && <span className="text-red-500">영문 대소문자 또는 숫자가 포함된 4-20자 비밀번호를 입력하세요.</span>}
                             </td>
                         </tr>
                         <tr>

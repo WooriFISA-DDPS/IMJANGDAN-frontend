@@ -63,15 +63,15 @@ function Login() {
 			<table className="table">
 				<tbody>
 					<tr>
-						<th className="col-3">아이디</th>
-						<td>
+						<th className="w-2/5">이메일</th>
+						<td className="w-3/5">
 							<input type="text" value={id} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 "  onChange={changeId} />
 						</td>
 					</tr>
 
 					<tr>
-						<th>비밀번호</th>
-						<td>
+						<th className="w-2/5">비밀번호</th>
+						<td className="w-3/5">
 							<input type="password" value={pwd} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 "  onChange={changePwd} />
 						</td>
 					</tr>

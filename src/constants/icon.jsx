@@ -1,5 +1,5 @@
 export const TODO_CATEGORY_ICON = {
-    Good: '😀',
-    SoSo: '👀',
-    Bad: '💔',
+    Good: '❤️',
+    SoSo: '❔',
+    Bad: '⚠️',
 }

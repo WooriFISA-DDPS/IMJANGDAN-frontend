@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavbarMenu = styled.a`
-  color: rgba(255,255,255,.75);
+  color: rgba(0,0,0);
   display: block;
   padding: .5rem 1rem;
   padding-right: 1rem;
@@ -23,7 +23,7 @@ function Header() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+      <nav className="navbar navbar-expand-md navbar-light bg-[#E1DAED] sticky-top">
         <div className="container">
 
           <NavbarMenu
@@ -34,16 +34,15 @@ function Header() {
 
           </NavbarMenu>
 
-          
-         
+
+
 
           <button
-            className="mr-3"
-            class="navbar-toggler"
+            className="mr-3 navbar-toggler"
             type="button"
             onClick={handleDrawerToggle}
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
 
@@ -55,115 +54,50 @@ function Header() {
 
             <ul class="navbar-nav me-auto">
               {/* 메인 화면 */}
-              <li className="nav-item">
+              <li className="ml-3 nav-item">
                 {/* <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i> IMJANGDAN
                 </Link> */}
 
               </li>
               {/* 메모 */}
-              <li className="nav-item">
+              <li className="px-1 nav-item">
                 <Link className="nav-link" to="/homememo" onClick={handleDrawerToggle} >
                   메모
                 </Link>
               </li>
 
               {/* 뉴스 */}
-              <li className="nav-item">
-                <Link className="nav-link" to="/newslist"  onClick={handleDrawerToggle}>
+              <li className="px-1 nav-item">
+                <Link className="nav-link" to="/newslist" onClick={handleDrawerToggle}>
                   뉴스
                 </Link>
               </li>
 
               {/* 커뮤니티 */}
-              <li className="nav-item">
+              <li className="px-1 nav-item">
                 <Link className="nav-link" to="/bbslist" onClick={handleDrawerToggle} >
                   커뮤니티
                 </Link>
               </li>
 
-              {/* 공인중개사 */}
-              {/* <li className="nav-item">
-                <div
-                  className="nav-link"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                    공인중개사
-                  </div>
-                </li>
 
-                {/* 파이낸싱 */}
-              {/* <li className="nav-item">
-                  <div
-                    className="nav-link"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                      파이낸싱
-                    </div>
-                  </li>  */}
             </ul>
             <ul className="ml-auto navbar-nav">
               {auth ? (
                 <>
                   {/* 회원 정보 */}
-                  <li className="nav-item"  onClick={handleDrawerToggle}>
+                  <li className="nav-item" onClick={handleDrawerToggle}>
                     <Link className="nav-link" to="/checkpwd">
                       회원 정보 수정
                     </Link>
                   </li>
 
-
-
-                  {/* 컬렉션 */}
-                  <li className="nav-item"  onClick={handleDrawerToggle}>
-                    <div
-                      className="nav-link"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      내 컬렉션
-                    </div>
-                  </li>
-                  {/* 관리자 메뉴 
-                  <li className="nav-item dropdown">
-                    <div
-                      className="nav-link dropdown-toggle"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      관리자
-                    </div>
-
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <Link className="dropdown-item" to="/bbslist">
-                        회원 관리
-                      </Link>
-                      <Link className="dropdown-item" to="/bbswrite">
-                        로그
-                      </Link>
-                      <Link className="dropdown-item" to="/bbswrite">
-                        모니터링
-                      </Link>
-                    </div>
-                  </li>*/}
+                
 
                   {/* 로그아웃 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/logout"  onClick={handleDrawerToggle}>
+                    <Link className="nav-link" to="/logout" onClick={handleDrawerToggle}>
                       <i className="fas fa-sign-out-alt"></i> 로그아웃
                     </Link>
                   </li>
@@ -172,14 +106,14 @@ function Header() {
                 <>
                   {/* 로그인 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/login"  onClick={handleDrawerToggle}>
+                    <Link className="nav-link" to="/login" onClick={handleDrawerToggle}>
                       로그인
                     </Link>
                   </li>
 
                   {/* 회원가입 */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/join"  onClick={handleDrawerToggle}>
+                    <Link className="nav-link" to="/join" onClick={handleDrawerToggle}>
                       회원가입
                     </Link>
                   </li>
