@@ -141,7 +141,7 @@ function BbsList() {
         activePage={page}
         itemsCountPerPage={pageSize}
         totalItemsCount={totalCnt}
-        pageRangeDisplayed={totalPages}
+        pageRangeDisplayed={5}
         prevPageText={"‹"}
         nextPageText={"›"}
         onChange={changePage}
