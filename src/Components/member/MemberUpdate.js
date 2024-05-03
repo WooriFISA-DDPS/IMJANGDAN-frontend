@@ -75,12 +75,6 @@ function MemberUpdate(props) {
 						</td>
 					</tr>
 
-					<tr>
-						<th>이름</th>
-						<td>
-							<input type="text" value={name} onChange={changeName} size="50px" />
-						</td>
-					</tr>
 
 					<tr>
 						<th>비밀번호</th>
