@@ -58,11 +58,13 @@ function Join() {
 
 	/* 아이디 중복 체크 */
     const checkEmailDuplicate = async () => {
+        if (!email) { return; }
+
         await axios.get(`${process.env.REACT_APP_API_URL}/user/checkId`, { params: { email: email } })
             .then((resp) => {
                 console.log("[Join.js] checkEmailDuplicate() success :D");
                 console.log(resp.data);
-                if (resp.status === 200) {
+                if (resp?.status === 200) {
                     alert("이메일 중복 확인!");
                 }
             })
@@ -70,7 +72,7 @@ function Join() {
                 console.log("[Join.js] checkEmailDuplicate() error :<");
                 console.log(err);
                 const resp = err.response;
-                if (resp.status === 400) {
+                if (resp?.status === 400) {
                     alert(resp.data);
                 }
             });
@@ -108,8 +110,8 @@ function Join() {
                         <tr>
                             <th className="w-1/3">이메일</th>
                             <td>
-                                <input className="w-full mb-2" type="text" value={email} onChange={changeEmail}/>
-                                <button className="w-full btn btn-outline-danger" onClick={checkEmailDuplicate}>
+                                <input className="w-full mb-2" type="email" maxLength={50} value={email} onChange={changeEmail}/>
+                                <button className="w-full btn btn-outline-danger" onClick={(e) => checkEmailDuplicate(e.target.value)}>
                                     <i className="fas fa-check"></i> 이메일 중복 확인</button>
                                 {!emailCheck(email) && <span className="text-red-500">유효한 이메일 주소를 입력하세요.</span>}
                             </td>
@@ -118,7 +120,7 @@ function Join() {
                         <tr>
                             <th>전화번호</th>
                             <td>
-                                <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full" />
+                                <input type="text" maxLength={11} value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full" />
                                 {!phoneCheck(phone) && <span className="text-red-500">유효한 한국 전화번호를 입력하세요.</span>}
                             </td>
                         </tr>
@@ -132,7 +134,7 @@ function Join() {
                         <tr>
                             <th>비밀번호</th>
                             <td>
-                                <input type="password" value={pwd} onChange={changePwd} className="w-full" />
+                                <input type="password" maxLength={20} value={pwd} onChange={changePwd} className="w-full" />
                                 {!passwordCheck(pwd) && <span className="text-red-500">영문 대소문자 또는 숫자가 포함된 4-20자 비밀번호를 입력하세요.</span>}
                             </td>
                         </tr>

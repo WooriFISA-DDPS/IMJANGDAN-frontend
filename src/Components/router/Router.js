@@ -10,6 +10,7 @@ import BbsAnswer from "../bbs/BbsAnswer"
 import NewsList from "../news/NewsList";
 import Join from "../member/Join"
 import Login from "../member/Login"
+import LoginNew from "../member/LoginNew"
 import Logout from "../member/Logout"
 import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
@@ -67,6 +68,7 @@ function Router() {
 				<Route path="/newslist" element={<DefaultLayout><NewsList /></DefaultLayout>}></Route>
 
 				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
+				<Route path="/loginnew" element={<LoginNew />}></Route>
 				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>
 				<Route path="/checkpwd" element={<DefaultLayout><CheckPwd /></DefaultLayout>}></Route>
 				<Route path="/update" element={<DefaultLayout><MemberUpdate /></DefaultLayout>}></Route>
