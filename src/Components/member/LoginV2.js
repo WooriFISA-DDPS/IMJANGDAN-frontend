@@ -56,7 +56,7 @@ const TitleImageDiv = styled.div`
 }
 `;
 
-function Login() {
+function LoginV2() {
   const navigate = useNavigate();
 
   const [id, setId] = useState("");
@@ -143,4 +143,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginV2;
