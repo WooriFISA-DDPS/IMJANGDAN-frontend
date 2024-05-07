@@ -10,7 +10,7 @@ import BbsAnswer from "../bbs/BbsAnswer"
 import NewsList from "../news/NewsList";
 import Join from "../member/Join"
 import Login from "../member/Login"
-import LoginNew from "../member/LoginNew"
+import LoginNew from "../member/LoginV2"
 import Logout from "../member/Logout"
 import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
@@ -18,6 +18,7 @@ import HomeMemo from "../app/HomeMemo";
 import HomeMemoMobile from "../app/HomeMemoMobile";
 import AdminList from "../admin/AdminList"
 import DefaultLayout from "../../layouts/DefaultLayout";
+import LoginV2 from "../member/LoginV2";
 
 
 function Router() {
@@ -67,8 +68,8 @@ function Router() {
 
 				<Route path="/newslist" element={<DefaultLayout><NewsList /></DefaultLayout>}></Route>
 
-				<Route path="/login" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
-				<Route path="/loginnew" element={<LoginNew />}></Route>
+				<Route path="/loginold" element={<DefaultLayout><Login /></DefaultLayout>}></Route>
+				<Route path="/login" element={<LoginV2 />}></Route>
 				<Route path="/join" element={<DefaultLayout><Join /></DefaultLayout>}></Route>
 				<Route path="/checkpwd" element={<DefaultLayout><CheckPwd /></DefaultLayout>}></Route>
 				<Route path="/update" element={<DefaultLayout><MemberUpdate /></DefaultLayout>}></Route>
