@@ -20,7 +20,6 @@ function Header() {
     setIsNavbarCollapsed(!isNavbarCollapsed); // Toggle collapse state
   };
 
-
   return (
     <header>
       <nav className="navbar navbar-expand-md navbar-light bg-[#E1DAED] sticky-top">
@@ -89,11 +88,11 @@ function Header() {
                   {/* 회원 정보 */}
                   <li className="nav-item" onClick={handleDrawerToggle}>
                     <Link className="nav-link" to="/checkpwd">
-                      회원 정보 수정
+                      {auth}
                     </Link>
                   </li>
 
-                
+
 
                   {/* 로그아웃 */}
                   <li className="nav-item">

@@ -11,7 +11,7 @@ function MemberUpdate(props) {
 	const [pwd, setPwd] = useState("");
 	const [checkPwd, setCheckPwd] = useState("");
 
-    const email = props.email;
+	const email = props.email;
 
 	const navigate = useNavigate();
 
@@ -30,11 +30,11 @@ function MemberUpdate(props) {
 	const API_URL = process.env.REACT_APP_API_URL;
 
 	useEffect(() => {
-        setHeaders({
-            "Authorization": `Bearer ${localStorage.getItem("bbs_access_token")}`
-        });
-        setName(props.name);
-    }, [props.name]);
+		setHeaders({
+			"Authorization": `Bearer ${localStorage.getItem("bbs_access_token")}`
+		});
+		setName(props.name);
+	}, [props.name]);
 
 	/* 회원 정보 수정 */
 	const update = async () => {
@@ -45,7 +45,7 @@ function MemberUpdate(props) {
 			username: name,
 		}
 
-		await axios.put(`${API_URL}/user/update`, req, {headers: headers})
+		await axios.put(`${API_URL}/user/update`, req, { headers: headers })
 			.then((resp) => {
 				console.log("[MemberUpdate.js] update() success :D");
 				console.log(resp.data);
@@ -71,7 +71,7 @@ function MemberUpdate(props) {
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" className="form-control"  value={email} size="50px" readOnly />
+							<input type="text" className="form-control" value={email} size="50px" readOnly />
 						</td>
 					</tr>
 
