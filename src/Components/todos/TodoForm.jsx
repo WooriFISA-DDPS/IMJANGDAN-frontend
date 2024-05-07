@@ -100,7 +100,7 @@ const TodoForm = ({ latParam, lngParam, files, setFiles:setFilesFromParam, onAdd
             onChange={(event) => setSummary(event.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <label
             className="block mt-2 mb-2 text-xl text-gray-800"
             htmlFor="summary"
@@ -108,7 +108,7 @@ const TodoForm = ({ latParam, lngParam, files, setFiles:setFilesFromParam, onAdd
             음성 메모
           </label>
           <AudioRecorder />
-        </div>
+        </div> */}
         <div>
           <label
             className="block mt-2 mb-2 text-xl text-gray-800"
@@ -146,7 +146,7 @@ const TodoForm = ({ latParam, lngParam, files, setFiles:setFilesFromParam, onAdd
             className="block mt-3 mb-2 text-xl text-gray-800"
             htmlFor="summary"
           >
-            사진
+            사진, 녹음
           </label>
           <div>
             {files.map((file, index) => (
