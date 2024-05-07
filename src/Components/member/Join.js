@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 function Join() {
 
-	const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [name, setName] = useState("name");
     const [pwd, setPwd] = useState("");
     const [phone, setPhone] = useState("");
@@ -17,7 +17,7 @@ function Join() {
         setEmail(event.target.value);
     }
     const changeName = (event) => {
-     setName(event.target.value);
+        setName(event.target.value);
     }
     const changePwd = (event) => {
         const inputValue = event.target.value;
@@ -26,37 +26,39 @@ function Join() {
         }
     }
 
-	const changeCheckPwd = (event) => {
+    const changeCheckPwd = (event) => {
         const inputValue = event.target.value;
         if (inputValue.length <= 20) { // 최대 글자수를 20으로 제한
             setCheckPwd(inputValue);
         }
     }
 
-	const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,8}$/;
-    
+    const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,8}$/;
+
     const passwordRegEx = /^[A-Za-z0-9]{4,20}$/;
-    
+
     const phoneRegEx = /^0[1-9]\d{7,9}$/;
 
-	const emailCheck = (email) => {
+    const emailCheck = (email) => {
+        if (!email) return true;
         return emailRegEx.test(email);
     }
 
     const phoneCheck = (phoneNumber) => {
+        if (!phoneNumber) return true;
         return phoneRegEx.test(phoneNumber);
     }
-    
 
-	const passwordCheck = (pwd) => {
+    const passwordCheck = (pwd) => {
+        if (!pwd) return true;
         return passwordRegEx.test(pwd);
     }
 
-	const passwordDoubleCheck = (pwd, passwordChk) => {
+    const passwordDoubleCheck = (pwd, passwordChk) => {
         return pwd === passwordChk;
     }
 
-	/* 아이디 중복 체크 */
+    /* 아이디 중복 체크 */
     const checkEmailDuplicate = async () => {
         if (!email) { return; }
 
@@ -79,7 +81,7 @@ function Join() {
     }
     /* 회원가입 */
     const join = async () => {
-        const req = {
+        const req = { // 모든 내용이 채워져 있어야.
             email: email,
             password: pwd,
             passwordCheck: checkPwd,
@@ -87,6 +89,14 @@ function Join() {
             phone: phone,
             regionId: regionId,
         }
+
+        // Check if all fields are filled
+        const allFieldsFilled = Object.values(req).every(x => x !== '' && x !== undefined && x !== null);
+        if (!allFieldsFilled) {
+            alert("필수 항목을 채워주세요.");
+            return;
+        }
+
         await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, req)
             .then((resp) => {
                 console.log("[Join.js] join() success :D");
@@ -110,13 +120,13 @@ function Join() {
                         <tr>
                             <th className="w-1/3">이메일</th>
                             <td>
-                                <input className="w-full mb-2" type="email" maxLength={50} value={email} onChange={changeEmail}/>
+                                <input className="w-full mb-2" type="email" maxLength={50} value={email} onChange={changeEmail} />
                                 <button className="w-full btn btn-outline-danger" onClick={(e) => checkEmailDuplicate(e.target.value)}>
                                     <i className="fas fa-check"></i> 이메일 중복 확인</button>
                                 {!emailCheck(email) && <span className="text-red-500">유효한 이메일 주소를 입력하세요.</span>}
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <th>전화번호</th>
                             <td>

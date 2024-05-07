@@ -134,7 +134,7 @@ function LoginV2() {
         </div>
         <div className="mt-4">
           <button className="w-full mt-2 bg-blue-500 text-white p-2 rounded" onClick={gotoJoin} >회원가입</button>
-          <div className="flex justify-center space-x-2 mt-4"><a href='#'>아이디/비밀번호 찾기</a></div>
+          <div className="flex justify-center space-x-2 mt-2"><a href='/api/memomap'>비회원으로 계속하기</a></div>
         </div>
       </div>
       <RightCornerDiv />
