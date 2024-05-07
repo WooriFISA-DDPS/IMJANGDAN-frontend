@@ -39,9 +39,7 @@ const TodoBody = ({ todos, setTodos, onFind }) => {
         isMobile ? (
           <TodoItemMobile key={index} todo={todo} onFind={findItemById} onDelete={deleteMemoById} />
         ) : ( // Render TodoItem for larger screens
-        <div >
           <TodoItem key={index} todo={todo} onFind={findItemById} onDelete={deleteMemoById} />
-        </div>
         )
       ))}
     </ul>

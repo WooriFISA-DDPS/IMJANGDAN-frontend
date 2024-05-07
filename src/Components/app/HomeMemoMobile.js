@@ -99,7 +99,7 @@ function HomeMemoMobile() {
     files.forEach((file) => fd.append("file", file));
 
     await axios
-      .post(`http://localhost:8989/memo/${memoId}/file/upload`, fd, { headers: headers })
+      .post(`${process.env.REACT_APP_API_URL}/memo/${memoId}/file/upload`, fd, { headers: headers })
       .then((resp) => {
         console.log("[memofile.js] fileUpload() success :D");
         console.log(resp.data);
@@ -117,7 +117,7 @@ function HomeMemoMobile() {
 
     const fetchTodos = async () => {
       try {
-        const response = await axios.get("http://localhost:8989/memo/list");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/memo/list`);
         const fetchedTodos = response.data.content;
 
         const filteredTodos = fetchedTodos.map((todo) => ({
@@ -133,7 +133,7 @@ function HomeMemoMobile() {
         if (fetchedTodos.length > 0) { // Check if there are any todos
 
           await axios
-            .get(`http://localhost:8989/memo/${filteredTodos[0].memoId}`, { headers: headers })
+            .get(`${process.env.REACT_APP_API_URL}/memo/${filteredTodos[0].memoId}`, { headers: headers })
             .then((resp) => {
               const receivedMemo = {
                 memoId: resp.data.memoId,

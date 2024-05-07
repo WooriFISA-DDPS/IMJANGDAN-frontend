@@ -47,7 +47,7 @@ function NewsList() {
           <tr>
             <th className="w-1/10">no</th>
             <th className="w-7/10">제목</th>
-            <th className="overflow-hidden w-2/10">링크</th>
+            <th className="overflow-hidden w-2/10"></th>
           </tr>
         </thead>
 
